@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f; // Speed of the player movement
 
+    private Vector3 playerPosition;
     private Rigidbody rb;
     [SerializeField] private UI_Inventory uiInventory;
 
@@ -13,12 +14,15 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
 
+        
         //add item to inventory
         inventory = new Inventory();
         
     }
     void Start()
     {
+        
+        playerPosition = transform.position;
         uiInventory.SetInventory(inventory);
         //idk why but this is the only way to get fish
 
@@ -48,24 +52,27 @@ public class PlayerController : MonoBehaviour
         // Move the player
         rb.velocity = movement;
 
+        //current player posistion
+        playerPosition = transform.position;
+
         // Move the camera along with the player
-        //MoveCamera(horizontalInput, verticalInput);
+        MoveCamera();
 
         //pick up item on space key
-        
+
     }
     
 
-    void MoveCamera(float horizontalInput, float verticalInput)
+    void MoveCamera()
     {
         // Get the main camera
         Camera mainCamera = Camera.main;
 
         // Calculate camera movement direction
-        Vector3 cameraMovement = new Vector3(horizontalInput, 0f, verticalInput) * moveSpeed * Time.deltaTime;
+        Vector3 cameraMovement = new Vector3(playerPosition.x, 3.87f, playerPosition.z - 7.24f);
 
         // Move the camera
-        mainCamera.transform.position += cameraMovement;
+        mainCamera.transform.position = cameraMovement;
     }
 }
 
