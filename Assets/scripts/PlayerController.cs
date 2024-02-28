@@ -49,6 +49,17 @@ public class PlayerController : MonoBehaviour
         // Calculate movement direction
         Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * moveSpeed;
 
+        //rotation of player
+        if (movement != Vector3.zero)
+        {
+            // Create a rotation to look at the target
+            Quaternion targetRotation = Quaternion.LookRotation(movement);
+
+            // Smoothly rotate towards the target rotation
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
+        }
+            
+
         // Move the player
         rb.velocity = movement;
 
