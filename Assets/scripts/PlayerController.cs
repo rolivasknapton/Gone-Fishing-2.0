@@ -6,6 +6,10 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f; // Speed of the player movement
 
+    public GameObject fishingRod;
+    private bool canFish;
+    private bool currentlyFishing;
+
     private Vector3 playerPosition;
     private Rigidbody rb;
     [SerializeField] private UI_Inventory uiInventory;
@@ -38,6 +42,33 @@ public class PlayerController : MonoBehaviour
             inventory.AddItem(itemWorld.GetItem());
             itemWorld.DestroySelf();
         }
+
+        if(other.gameObject.tag == "Water")
+        {
+            Debug.Log("hit the water");
+            canFish = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Water")
+        {
+            canFish = false;
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        
+        if (other.gameObject.tag == "Water")
+        {
+            
+            if (Input.GetKeyUp("space"))
+            {
+                //Debug.Log("fish!");
+                //fishingRod.SetActive(true);
+
+            }
+        }
     }
 
     void Update()
@@ -63,6 +94,13 @@ public class PlayerController : MonoBehaviour
         // Move the player
         rb.velocity = movement;
 
+        //sets currently fishing to false and deactivates the fishing rod if the polayer is currently fishing and moves
+        if(rb.velocity != Vector3.zero && currentlyFishing)
+        {
+            currentlyFishing = false;
+            fishingRod.SetActive(false);
+        }
+
         //current player posistion
         playerPosition = transform.position;
 
@@ -71,9 +109,23 @@ public class PlayerController : MonoBehaviour
 
         //pick up item on space key
 
+
+        //check if yo ucan fish and if you are pressing the fish button
+        if (canFish)
+        {
+            if (Input.GetKeyUp("space"))
+            {
+                PlayerFish();
+            }
+        }
     }
     
-
+    private void PlayerFish()
+    {
+        //Debug.Log("fish!");
+        fishingRod.SetActive(true);
+        currentlyFishing = true;
+    }
     void MoveCamera()
     {
         // Get the main camera

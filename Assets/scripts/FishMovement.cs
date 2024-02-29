@@ -6,7 +6,7 @@ public class FishMovement : MonoBehaviour
 {
     [SerializeField]
     private Mesh waterMesh;
-    private MeshCollider waterCollider;
+    private CapsuleCollider waterCollider;
     private GameObject water;
     //private float fishSpeed= 5;
     private Vector3 fishDirection;
@@ -21,7 +21,7 @@ public class FishMovement : MonoBehaviour
         currentPosition = transform.position;
 
         water = GameObject.FindWithTag("Water");
-        waterCollider = water.GetComponent<MeshCollider>();
+        waterCollider = water.GetComponent<CapsuleCollider>();
 
         fishDirection = GetRandomPointInMeshFilter(waterCollider);
 
@@ -58,7 +58,7 @@ public class FishMovement : MonoBehaviour
         fishDirection = GetRandomPointInMeshFilter(waterCollider);
     }
 
-    private Vector3 GetRandomPointInMeshFilter(MeshCollider water)
+    private Vector3 GetRandomPointInMeshFilter(CapsuleCollider water)
     {
         
         Bounds filterBounds = water.bounds;
