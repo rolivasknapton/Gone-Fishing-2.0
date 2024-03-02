@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     private bool canFish;
     private bool currentlyFishing;
 
+    private GameObject pond;
+
     private Vector3 playerPosition;
     private Rigidbody rb;
     [SerializeField] private UI_Inventory uiInventory;
@@ -17,7 +19,8 @@ public class PlayerController : MonoBehaviour
     private Inventory inventory;
     private void Awake()
     {
-
+        //set reference to pond
+        pond = GameObject.FindGameObjectWithTag("Water");
         
         //add item to inventory
         inventory = new Inventory();
@@ -45,7 +48,7 @@ public class PlayerController : MonoBehaviour
 
         if(other.gameObject.tag == "Water")
         {
-            Debug.Log("hit the water");
+            //Debug.Log("hit the water");
             canFish = true;
         }
     }
@@ -125,6 +128,13 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("fish!");
         fishingRod.SetActive(true);
         currentlyFishing = true;
+        
+        
+        IFishable fishable;
+
+        fishable = pond.GetComponent<IFishable>();
+        fishable.Fish();
+
     }
     void MoveCamera()
     {

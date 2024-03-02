@@ -13,6 +13,8 @@ public class FishMovement : MonoBehaviour
     private Vector3 newDirection;
     private Vector3 currentPosition;
 
+
+    private float yPosition = 0.019f;
     public float duration = 1.0f;
     private float elapsedTime = 0.0f; // Time elapsed since the interpolation started
     // Start is called before the first frame update
@@ -24,8 +26,9 @@ public class FishMovement : MonoBehaviour
         waterCollider = water.GetComponent<CapsuleCollider>();
 
         fishDirection = GetRandomPointInMeshFilter(waterCollider);
+         
+        StartFishWander();
 
-        InvokeRepeating("ChangeFishDestination", 0f, Random.Range(4, 10.0f));
 
         //transform.position = fishDirection;  
 
@@ -45,12 +48,24 @@ public class FishMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ChangeFishDestination();
+            //ChangeFishDestination();
         }
 
     }
+    public void MoveTowardPlayer()
+    {
+        CancelInvoke(); 
+        currentPosition = transform.position;
+        elapsedTime = 0.0f;
 
+        fishDirection = GameObject.FindWithTag("Player").transform.position;
+        Debug.Log(fishDirection);
 
+    }
+    private void StartFishWander()
+    {
+        InvokeRepeating("ChangeFishDestination", 0f, Random.Range(4, 10.0f));
+    }
     private void ChangeFishDestination()
     {
         currentPosition = transform.position;
@@ -71,7 +86,7 @@ public class FishMovement : MonoBehaviour
         Debug.Log(randomZ);
         Debug.Log(randomX);
         */
-        return new Vector3(randomX, 0.11f, randomZ);
+        return new Vector3(randomX, yPosition, randomZ);
 
     }
     
