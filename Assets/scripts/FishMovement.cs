@@ -58,6 +58,8 @@ public class FishMovement : MonoBehaviour
         if (isMovingTowardsPlayer && GameObject.FindWithTag("Player").GetComponent<Rigidbody>().velocity != Vector3.zero)
         {
             Debug.Log("moved");
+            StartFishWander();
+
             isMovingTowardsPlayer = false;
         }
 
