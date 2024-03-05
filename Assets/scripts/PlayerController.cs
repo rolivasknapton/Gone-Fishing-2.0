@@ -59,20 +59,7 @@ public class PlayerController : MonoBehaviour
             canFish = false;
         }
     }
-    private void OnTriggerStay(Collider other)
-    {
-        
-        if (other.gameObject.tag == "Water")
-        {
-            
-            if (Input.GetKeyUp("space"))
-            {
-                //Debug.Log("fish!");
-                //fishingRod.SetActive(true);
-
-            }
-        }
-    }
+    
 
     void Update()
     {
@@ -114,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
 
         //check if yo ucan fish and if you are pressing the fish button
-        if (canFish && Input.GetKeyUp("space"))
+        if (CanFish() && Input.GetKeyUp("space"))
         {
           
                 PlayerFish();
@@ -145,6 +132,14 @@ public class PlayerController : MonoBehaviour
 
         // Move the camera
         mainCamera.transform.position = cameraMovement;
+    }
+    private bool CanFish()
+    {
+        if (canFish && currentlyFishing!=true)
+        {
+            return true;
+        }
+        else return false;
     }
 }
 
