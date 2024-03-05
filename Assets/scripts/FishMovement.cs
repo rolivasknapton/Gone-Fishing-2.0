@@ -54,11 +54,24 @@ public class FishMovement : MonoBehaviour
     }
     public void MoveTowardPlayer()
     {
+        //stop random fish movement
         CancelInvoke(); 
+
+        //set current position
         currentPosition = transform.position;
+
+        //set lerp time
         elapsedTime = 0.0f;
 
-        fishDirection = GameObject.FindWithTag("Player").transform.position;
+        //find player
+        Vector3 playerLocation = GameObject.FindWithTag("Player").transform.position;
+        
+        //adjust to fishing rod location
+        Vector3 fishingRod = new Vector3(playerLocation.x, yPosition, playerLocation.z);
+
+        //move fish towards foot of player
+        fishDirection = fishingRod;
+
         Debug.Log(fishDirection);
 
     }
