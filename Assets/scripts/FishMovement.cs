@@ -13,6 +13,8 @@ public class FishMovement : MonoBehaviour
     private Vector3 newDirection;
     private Vector3 currentPosition;
 
+    private bool isMovingTowardsPlayer;
+
 
     private float yPosition = 0.019f;
     public float duration = 1.0f;
@@ -35,6 +37,7 @@ public class FishMovement : MonoBehaviour
     }
     private void Update()
     {
+       
 
         elapsedTime += Time.deltaTime*.1f;
         float t = Mathf.Clamp01(elapsedTime / duration);
@@ -49,6 +52,13 @@ public class FishMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //ChangeFishDestination();
+        }
+
+        //checks if fish is moving towards player and if the player moves then change direction
+        if (isMovingTowardsPlayer && GameObject.FindWithTag("Player").GetComponent<Rigidbody>().velocity != Vector3.zero)
+        {
+            Debug.Log("moved");
+            isMovingTowardsPlayer = false;
         }
 
     }
@@ -71,8 +81,11 @@ public class FishMovement : MonoBehaviour
 
         //move fish towards foot of player
         fishDirection = fishingRod;
+        isMovingTowardsPlayer = true;
 
-        Debug.Log(fishDirection);
+
+
+        //Debug.Log(fishDirection);
 
     }
     private void StartFishWander()

@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject fishingRod;
     private bool canFish;
-    private bool currentlyFishing;
+    public bool currentlyFishing;
 
     private GameObject pond;
 
@@ -114,12 +114,11 @@ public class PlayerController : MonoBehaviour
 
 
         //check if yo ucan fish and if you are pressing the fish button
-        if (canFish)
+        if (canFish && Input.GetKeyUp("space"))
         {
-            if (Input.GetKeyUp("space"))
-            {
+          
                 PlayerFish();
-            }
+            
         }
     }
     
