@@ -57,7 +57,7 @@ public class FishMovement : MonoBehaviour
         //checks if fish is moving towards player and if the player moves then change direction
         if (isMovingTowardsPlayer && GameObject.FindWithTag("Player").GetComponent<Rigidbody>().velocity != Vector3.zero)
         {
-            Debug.Log("moved");
+            //Debug.Log("player moved");
             StartFishWander();
 
             isMovingTowardsPlayer = false;
@@ -77,12 +77,19 @@ public class FishMovement : MonoBehaviour
 
         //find player
         Vector3 playerLocation = GameObject.FindWithTag("Player").transform.position;
-        
+
+        //find hook
+        Vector3 fishingRodHook = GameObject.FindWithTag("FishingRodHook").transform.position;
+
         //adjust to fishing rod location
         Vector3 fishingRod = new Vector3(playerLocation.x, yPosition, playerLocation.z);
 
         //move fish towards foot of player
-        fishDirection = fishingRod;
+        //fishDirection = fishingRod;
+
+        fishDirection = fishingRodHook;
+
+        //adjusts state of movement
         isMovingTowardsPlayer = true;
 
 

@@ -107,6 +107,9 @@ public class PlayerController : MonoBehaviour
                 PlayerFish();
             
         }
+
+        //check if you are currently fishing and a fish is overlapping the collision attached tothe hook
+        //destroy the fish that is overlapping the hook and remove it from the pond array fishinpond[]
     }
     
     private void PlayerFish()

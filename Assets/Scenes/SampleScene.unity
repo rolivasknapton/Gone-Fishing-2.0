@@ -235,6 +235,7 @@ Transform:
   - {fileID: 981082553}
   - {fileID: 1760039931}
   - {fileID: 822342254}
+  - {fileID: 1612796780}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &41489006
@@ -251,6 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   fishingRod: {fileID: 1760039930}
+  currentlyFishing: 0
   uiInventory: {fileID: 1250060399}
 --- !u!54 &41489007
 Rigidbody:
@@ -3854,7 +3856,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5000001
+  m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
@@ -4765,6 +4767,37 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5124760961819329, guid: 77059294e1e1ae946b1060154231a093, type: 3}
   m_PrefabInstance: {fileID: 1679509296}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1612796779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1612796780}
+  m_Layer: 0
+  m_Name: FishingRodTip
+  m_TagString: FishingRodHook
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1612796780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612796779}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.18123178, y: -0, z: -0, w: 0.9834404}
+  m_LocalPosition: {x: 0, y: -2.0315437, z: 3.1521769}
+  m_LocalScale: {x: 0.022741377, y: 1.2979926, z: 0.022741385}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 41489005}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1628027852
 GameObject:
   m_ObjectHideFlags: 0
