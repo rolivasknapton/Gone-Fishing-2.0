@@ -75,24 +75,23 @@ public class FishMovement : MonoBehaviour
         //set lerp time
         elapsedTime = 0.0f;
 
-        //find player
-        Vector3 playerLocation = GameObject.FindWithTag("Player").transform.position;
-
         //find hook
         Vector3 fishingRodHook = GameObject.FindWithTag("FishingRodHook").transform.position;
 
-        //adjust to fishing rod location
-        Vector3 fishingRod = new Vector3(playerLocation.x, yPosition, playerLocation.z);
-
-        //move fish towards foot of player
-        //fishDirection = fishingRod;
-
+        //move fish toward hook
         fishDirection = fishingRodHook;
 
         //adjusts state of movement
         isMovingTowardsPlayer = true;
 
+        //find player
+        //Vector3 playerLocation = GameObject.FindWithTag("Player").transform.position;
 
+        //adjust to fishing rod location
+        //Vector3 fishingRod = new Vector3(playerLocation.x, yPosition, playerLocation.z);
+
+        //move fish towards foot of player
+        //fishDirection = fishingRod;
 
         //Debug.Log(fishDirection);
 
