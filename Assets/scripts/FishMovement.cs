@@ -13,6 +13,8 @@ public class FishMovement : MonoBehaviour
     private Vector3 newDirection;
     private Vector3 currentPosition;
 
+    public bool FishNearHook = false;
+
     private bool isMovingTowardsPlayer;
 
 
@@ -64,6 +66,31 @@ public class FishMovement : MonoBehaviour
         }
 
     }
+
+    private void OnTriggerStay(Collider other)
+    {   
+        //test bool
+        //bool touching = false;
+
+        if (other.gameObject.name == "FishingRodTip")
+        {
+            
+            FishNearHook = true;
+
+            //touching = true;
+            //Debug.Log(touching);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "FishingRodTip")
+        {
+            FishNearHook = false;
+            Debug.Log("no longer touching");
+        }
+
+    }
+
     public void MoveTowardPlayer()
     {
         //stop random fish movement
