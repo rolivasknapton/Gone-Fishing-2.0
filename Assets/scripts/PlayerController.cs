@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     [SerializeField] private UI_Inventory uiInventory;
 
-    private Inventory inventory;
+    public Inventory inventory;
     private void Awake()
     {
         //set reference to pond
@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
         {
             //touching item
             inventory.AddItem(itemWorld.GetItem());
+            
+            
             itemWorld.DestroySelf();
         }
 

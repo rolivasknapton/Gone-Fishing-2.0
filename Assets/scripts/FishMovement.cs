@@ -72,6 +72,11 @@ public class FishMovement : MonoBehaviour
         if (FishNearHook && Input.GetKeyDown("space"))
         {
             Destroy(gameObject);
+
+            //adds item to inventory
+            GameObject.FindWithTag("Player").GetComponent<PlayerController>().inventory.AddItem(new Item { itemType = Item.ItemType.Fish, amount = 1 });
+            
+            
             water.GetComponent<Pond>().fishInPond = RemoveGameObjectFromArray(water.GetComponent<Pond>().fishInPond, gameObject);
 
         }
