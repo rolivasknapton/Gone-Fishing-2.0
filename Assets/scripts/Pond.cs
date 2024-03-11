@@ -9,7 +9,9 @@ public class Pond : MonoBehaviour, IFishable
    
     public void Fish()
     {
-        GetRandomFish().GetComponent<FishMovement>().MoveTowardPlayer();
+        
+            GetRandomFish().GetComponent<FishMovement>().MoveTowardPlayer();
+              
     }
 
     public GameObject GetRandomFish()

@@ -87,8 +87,7 @@ public class PlayerController : MonoBehaviour
         //sets currently fishing to false and deactivates the fishing rod if the polayer is currently fishing and moves
         if(rb.velocity != Vector3.zero && currentlyFishing)
         {
-            currentlyFishing = false;
-            fishingRod.SetActive(false);
+            CancelFishing();
         }
 
         //current player posistion
@@ -97,26 +96,35 @@ public class PlayerController : MonoBehaviour
         // Move the camera along with the player
         MoveCamera();
 
+
         //pick up item on space key
 
+        
 
         //check if yo ucan fish and if you are pressing the fish button
-        if (CanFish() && Input.GetKeyUp("space"))
+        if (Input.GetKeyDown("space"))
         {
-          
+            if (currentlyFishing)
+            {
+                CancelFishing();
+            }
+            else if (CanFish())
+            {
                 PlayerFish();
-            
+            }    
         }
 
-        //check if you are currently fishing
-        //and if the fish that is currently moveing toward the hook is overlapping the collision attached to the hook
         
+        //check if you are currently fishing
+
+        //and if the fish that is currently moveing toward the hook is overlapping the collision attached to the hook
+
         //destroy the fish that is overlapping the hook and remove it from the pond array fishinpond[]
     }
-    
+
     private void PlayerFish()
     {
-        //Debug.Log("fish!");
+        Debug.Log("fish!");
         fishingRod.SetActive(true);
         currentlyFishing = true;
         
@@ -145,6 +153,12 @@ public class PlayerController : MonoBehaviour
             return true;
         }
         else return false;
+    }
+
+    private void CancelFishing()
+    {
+        currentlyFishing = false;
+        fishingRod.SetActive(false);
     }
 }
 

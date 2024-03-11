@@ -15,7 +15,7 @@ public class FishMovement : MonoBehaviour
 
     public bool FishNearHook = false;
 
-    private bool isMovingTowardsPlayer;
+    public bool isMovingTowardsPlayer;
 
 
     private float yPosition = 0.019f;
@@ -39,9 +39,9 @@ public class FishMovement : MonoBehaviour
     }
     private void Update()
     {
-       
 
-        elapsedTime += Time.deltaTime*.1f;
+
+        elapsedTime += Time.deltaTime * .1f;
         float t = Mathf.Clamp01(elapsedTime / duration);
         transform.position = Vector3.Lerp(currentPosition, fishDirection, t);
 
@@ -64,7 +64,24 @@ public class FishMovement : MonoBehaviour
 
             isMovingTowardsPlayer = false;
         }
+        if (isMovingTowardsPlayer && Input.GetKeyDown("space"))
+        {
+            StartFishWander();
+        }
 
+        if (FishNearHook && Input.GetKeyDown("space"))
+        {
+            Destroy(gameObject);
+            water.GetComponent<Pond>().fishInPond = RemoveGameObjectFromArray(water.GetComponent<Pond>().fishInPond, gameObject);
+
+        }
+
+    }
+    private GameObject[] RemoveGameObjectFromArray(GameObject[] array, GameObject obj)
+    {
+        List<GameObject> tempList = new List<GameObject>(array);
+        tempList.Remove(obj);
+        return tempList.ToArray();
     }
 
     private void OnTriggerStay(Collider other)
@@ -86,7 +103,7 @@ public class FishMovement : MonoBehaviour
         if (other.gameObject.name == "FishingRodTip")
         {
             FishNearHook = false;
-            Debug.Log("no longer touching");
+            //Debug.Log("no longer touching");
         }
 
     }
@@ -126,6 +143,7 @@ public class FishMovement : MonoBehaviour
     private void StartFishWander()
     {
         InvokeRepeating("ChangeFishDestination", 0f, Random.Range(4, 10.0f));
+        isMovingTowardsPlayer = false;
     }
     private void ChangeFishDestination()
     {
