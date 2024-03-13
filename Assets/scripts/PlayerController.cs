@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f; // Speed of the player movement
+    private float moveSpeed = 2; // Speed of the player movement
 
     public GameObject fishingRod;
     private bool canFish;
@@ -70,7 +70,12 @@ public class PlayerController : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
         // Calculate movement direction
-        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * moveSpeed;
+        Vector3 direction = new Vector3(horizontalInput, 0f, verticalInput);
+        direction.Normalize();
+
+        //store direction and move speed in movement vector
+        Vector3 movement =  direction * moveSpeed;
+        
 
         //rotation of player
         if (movement != Vector3.zero)

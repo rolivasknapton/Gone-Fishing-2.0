@@ -159,10 +159,11 @@ public class FishMovement : MonoBehaviour
 
     private Vector3 GetRandomPointInMeshFilter(CapsuleCollider water)
     {
+        float offset= 0f;
         
         Bounds filterBounds = water.bounds;
-        Vector3 minBounds = new Vector3(filterBounds.min.x, filterBounds.min.y, filterBounds.min.z);
-        Vector3 maxBounds = new Vector3(filterBounds.max.x, filterBounds.max.y, filterBounds.max.z);
+        Vector3 minBounds = new Vector3(filterBounds.min.x + offset, filterBounds.min.y, filterBounds.min.z + offset);
+        Vector3 maxBounds = new Vector3(filterBounds.max.x - offset, filterBounds.max.y, filterBounds.max.z-offset);
 
         float randomX = Random.Range(minBounds.x, maxBounds.x);
         float randomZ = Random.Range(minBounds.z, maxBounds.z);

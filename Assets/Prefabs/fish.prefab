@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -5075801873856046964}
   - component: {fileID: 6606892560501973916}
   - component: {fileID: -4448707542447136055}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: fish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,6 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waterMesh: {fileID: 0}
+  FishNearHook: 0
+  isMovingTowardsPlayer: 0
   duration: 1
 --- !u!135 &6606892560501973916
 SphereCollider:
