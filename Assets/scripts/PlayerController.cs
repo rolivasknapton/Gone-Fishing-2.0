@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     [SerializeField] private UI_Inventory uiInventory;
 
+    private GameObject nearbyObject = null;
+
     public Inventory inventory;
     private void Awake()
     {
@@ -104,7 +106,8 @@ public class PlayerController : MonoBehaviour
         MoveCamera();
 
 
-        //pick up item on space key
+        //check if you are near an interactable entity && space pressed
+        OnSpaceActivateNearbyObject();
 
         
 
@@ -166,6 +169,22 @@ public class PlayerController : MonoBehaviour
     {
         currentlyFishing = false;
         fishingRod.SetActive(false);
+    }
+    public void StoreNearestGameObject(GameObject obj)
+    {
+        nearbyObject = obj;
+        Debug.Log(obj);
+    }
+    private void OnSpaceActivateNearbyObject()
+    {
+        if (nearbyObject == null)
+        {
+            return;
+        }
+        if (Input.GetKeyDown("space"))
+        {
+            nearbyObject.GetComponent<IInteractable>().Interact();
+        }
     }
 }
 
