@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     public Inventory inventory;
     private void Awake()
     {
+
+        rb = GetComponent<Rigidbody>(); // Get the Rigidbody component attached to the player
+
         //set reference to pond
         pond = GameObject.FindGameObjectWithTag("Water");
         
@@ -36,7 +39,7 @@ public class PlayerController : MonoBehaviour
         //idk why but this is the only way to get fish
 
         ItemWorld.SpawnItemWorld(new Vector3(-1.23f, 0.14f, -1.60f), new Item { itemType = Item.ItemType.Fish, amount = 1 });
-        rb = GetComponent<Rigidbody>(); // Get the Rigidbody component attached to the player
+        
     }
     private void OnTriggerEnter(Collider other)
     {
