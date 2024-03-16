@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
         //set reference to pond
         pond = GameObject.FindGameObjectWithTag("Water");
         
-        //add item to inventory
+        //instatntiating inventory
         inventory = new Inventory();
         
     }
