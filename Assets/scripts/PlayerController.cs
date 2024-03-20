@@ -114,9 +114,10 @@ public class PlayerController : MonoBehaviour
 
         
 
-        //check if yo ucan fish and if you are pressing the fish button
+        //Interact button
         if (Input.GetKeyDown("space"))
         {
+            //check if yo ucan fish and if you are pressing the fish button
             if (currentlyFishing)
             {
                 CancelFishing();
@@ -124,8 +125,10 @@ public class PlayerController : MonoBehaviour
             else if (CanFish())
             {
                 PlayerFish();
-            }    
+            }
         }
+
+        
 
         
         //check if you are currently fishing
@@ -137,7 +140,7 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerFish()
     {
-        Debug.Log("fish!");
+        //Debug.Log("fish!");
         fishingRod.SetActive(true);
         currentlyFishing = true;
         
@@ -176,8 +179,10 @@ public class PlayerController : MonoBehaviour
     public void StoreNearestGameObject(GameObject obj)
     {
         nearbyObject = obj;
-        Debug.Log(obj);
+        //Debug.Log(obj);
     }
+
+    //interacts with the nearby object if there is one and if the player pressed space
     private void OnSpaceActivateNearbyObject()
     {
         if (nearbyObject == null)

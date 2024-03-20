@@ -29,7 +29,7 @@ public class FishMovement : MonoBehaviour
         water = GameObject.FindWithTag("Water");
         waterCollider = water.GetComponent<CapsuleCollider>();
 
-        fishDirection = GetRandomPointInMeshFilter(waterCollider);
+        fishDirection = GetRandomPointInCollider(waterCollider);
          
         StartFishWander();
 
@@ -154,10 +154,10 @@ public class FishMovement : MonoBehaviour
     {
         currentPosition = transform.position;
         elapsedTime = 0.0f;
-        fishDirection = GetRandomPointInMeshFilter(waterCollider);
+        fishDirection = GetRandomPointInCollider(waterCollider);
     }
 
-    private Vector3 GetRandomPointInMeshFilter(CapsuleCollider water)
+    private Vector3 GetRandomPointInCollider(CapsuleCollider water)
     {
         float offset= 0f;
         
