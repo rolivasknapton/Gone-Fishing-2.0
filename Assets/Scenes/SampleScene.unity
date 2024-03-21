@@ -228,6 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishingRod: {fileID: 1760039930}
   currentlyFishing: 0
+  currentlySpeaking: 0
   uiInventory: {fileID: 1250060399}
 --- !u!54 &41489007
 Rigidbody:
@@ -2225,6 +2226,8 @@ GameObject:
   - component: {fileID: 645642063}
   - component: {fileID: 645642065}
   - component: {fileID: 645642066}
+  - component: {fileID: 645642068}
+  - component: {fileID: 645642067}
   m_Layer: 0
   m_Name: greg
   m_TagString: Untagged
@@ -2340,6 +2343,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yValue: 0
   direction: {x: 0, y: 0, z: 0}
+--- !u!135 &645642067
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645642062}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 6.32
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &645642068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645642062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b49ffa2f8e122b42b0a3c1877e92089, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playercontroller: {fileID: 41489006}
+  dialogueText: {fileID: 11400000, guid: 65ca5a78765dd4c48bbade16e3c4aa40, type: 2}
+  dialogue: {fileID: 1742790179}
 --- !u!1 &680554500
 GameObject:
   m_ObjectHideFlags: 0
@@ -4526,6 +4565,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1325527344}
   - component: {fileID: 1325527343}
+  - component: {fileID: 1325527346}
+  - component: {fileID: 1325527345}
   m_Layer: 0
   m_Name: frank
   m_TagString: Untagged
@@ -4600,6 +4641,42 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1325527345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325527342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c683d9db778f17c4fbe289e157c04623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playercontroller: {fileID: 41489006}
+  dialogueText: {fileID: 11400000, guid: 023671fb2c45cfa49b4b33e38b9886ca, type: 2}
+  dialogue: {fileID: 1742790179}
+--- !u!135 &1325527346
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325527342}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 6.09
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1340300901
 GameObject:
   m_ObjectHideFlags: 0

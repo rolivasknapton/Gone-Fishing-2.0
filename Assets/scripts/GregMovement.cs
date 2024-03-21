@@ -8,6 +8,7 @@ public class GregMovement : MonoBehaviour
     float speed = 1f;
     public float yValue = 0f; // You can adjust the y value as per your requirement
     public Vector3 direction; // Variable to store the generated direction
+    private bool isTalking;
 
     private void Start()
     {
@@ -18,7 +19,11 @@ public class GregMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(direction * speed * Time.deltaTime);
+        if (CanMove())
+        {
+            transform.Translate(direction * speed * Time.deltaTime);
+        }
+        
     }
 
     private void GenerateDirection()
@@ -33,5 +38,25 @@ public class GregMovement : MonoBehaviour
 
         // Debug.Log to see the generated direction in the console (optional)
         //Debug.Log("New Direction: " + direction);
+    }
+    private bool CanMove()
+    {
+        if (isTalking)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+               
+    }
+    public void StartConversation()
+    {
+        isTalking = true;
+    }
+    public void EndConversation()
+    {
+        isTalking = false;
     }
 }

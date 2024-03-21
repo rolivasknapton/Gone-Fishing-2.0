@@ -15,6 +15,8 @@ public class Dialogue : MonoBehaviour
 
     private bool conversationEnded;
 
+    private bool convoInprogress;
+
     private bool isTyping;
 
 
@@ -70,6 +72,10 @@ public class Dialogue : MonoBehaviour
 
     private void StartConversation(DialogueText dialogueText)
     {
+
+        //notify npc
+        convoInprogress = true;
+
         //notify the player
         playercontroller.DialogueStarted();
 
@@ -99,7 +105,7 @@ public class Dialogue : MonoBehaviour
         //reutrn bool to false
         conversationEnded = false;
 
-        
+        convoInprogress = false;
 
         //deactivate this gameobject
         if (gameObject.activeSelf)
@@ -142,6 +148,17 @@ public class Dialogue : MonoBehaviour
         NPCDialogueText.text = p;
         //update isTyping bool
         isTyping = false;
+    }
+    public bool CheckIfConvoEnded()
+    {
+        if (convoInprogress)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 }
 

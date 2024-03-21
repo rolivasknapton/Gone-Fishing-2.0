@@ -2,21 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Franny : NPC,  ITalkable
+public class Greg : NPC, ITalkable
 {
 
     [SerializeField] private DialogueText dialogueText;
     [SerializeField] private Dialogue dialogue;
-    //when the player gets near Franny, the nearest object is stored in a variable on the PlayerController script
-   
+
+
     public override void Interact()
     {
         //Debug.Log("interacted!");
         Talk(dialogueText);
+        if (dialogue.CheckIfConvoEnded())
+        {
+           this.GetComponent<GregMovement>().EndConversation();
+        }
     }
 
     public void Talk(DialogueText dialogueText)
     {
         dialogue.DisplayNextParagraph(dialogueText);
+        this.GetComponent<GregMovement>().StartConversation();
+        
+
+        
     }
+
+
 }
