@@ -9,6 +9,8 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private TextMeshProUGUI NPCDialogueText;
     [SerializeField] private float typeSpeed= 10f;
 
+    public PlayerController playercontroller;
+
     private Queue<string> paragraphs = new Queue<string>();
 
     private bool conversationEnded;
@@ -31,6 +33,7 @@ public class Dialogue : MonoBehaviour
             {
                 //start convo
                 StartConversation(dialogueText);
+                
             }
 
             else if (conversationEnded && !isTyping)
@@ -67,6 +70,9 @@ public class Dialogue : MonoBehaviour
 
     private void StartConversation(DialogueText dialogueText)
     {
+        //notify the player
+        playercontroller.DialogueStarted();
+
         //activate gameObject
         if (!gameObject.activeSelf)
         {
@@ -87,14 +93,21 @@ public class Dialogue : MonoBehaviour
     {
         //clear the queue
 
+        //notify the player the convo is over
+        playercontroller.DialogueEnded();
+
         //reutrn bool to false
         conversationEnded = false;
+
+        
 
         //deactivate this gameobject
         if (gameObject.activeSelf)
         {
             gameObject.SetActive(false);
         }
+
+        
     }
 
 

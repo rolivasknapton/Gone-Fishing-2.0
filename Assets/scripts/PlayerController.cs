@@ -8,7 +8,9 @@ public class PlayerController : MonoBehaviour
 
     public GameObject fishingRod;
     private bool canFish;
+    
     public bool currentlyFishing;
+    public bool currentlySpeaking = false;
 
     private GameObject pond;
 
@@ -83,7 +85,7 @@ public class PlayerController : MonoBehaviour
         
 
         //rotation of player
-        if (movement != Vector3.zero)
+        if (movement != Vector3.zero && CanMove())
         {
             // Create a rotation to look at the target
             Quaternion targetRotation = Quaternion.LookRotation(movement);
@@ -91,10 +93,14 @@ public class PlayerController : MonoBehaviour
             // Smoothly rotate towards the target rotation
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
         }
-            
 
-        // Move the player
-        rb.velocity = movement;
+
+        // Move the player if can move
+        if (CanMove())
+        {
+            rb.velocity = movement;
+        }
+        
 
         //sets currently fishing to false and deactivates the fishing rod if the polayer is currently fishing and moves
         if(rb.velocity != Vector3.zero && currentlyFishing)
@@ -170,6 +176,17 @@ public class PlayerController : MonoBehaviour
         }
         else return false;
     }
+    private bool CanMove()
+    {
+        if (currentlySpeaking)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
 
     private void CancelFishing()
     {
@@ -181,7 +198,7 @@ public class PlayerController : MonoBehaviour
         nearbyObject = obj;
         //Debug.Log(obj);
     }
-
+    
     //interacts with the nearby object if there is one and if the player pressed space
     private void OnSpaceActivateNearbyObject()
     {
@@ -192,8 +209,22 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown("space"))
         {
             nearbyObject.GetComponent<IInteractable>().Interact();
+            if (nearbyObject.GetComponent<ITalkable>() != null)
+            {
+                
+                rb.velocity = Vector3.zero;
+            }
         }
     }
+    public void DialogueStarted()
+    {
+        currentlySpeaking = true;
+    }
+    public void DialogueEnded()
+    {
+        currentlySpeaking = false;
+    }
+
 }
 
 
