@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float moveSpeed = 2; // Speed of the player movement
+    [SerializeField]
+    private float moveSpeed; // Speed of the player movement
 
     public GameObject fishingRod;
     private bool canFish;
@@ -163,7 +164,7 @@ public class PlayerController : MonoBehaviour
         Camera mainCamera = Camera.main;
 
         // Calculate camera movement direction
-        Vector3 cameraMovement = new Vector3(playerPosition.x, 3.87f, playerPosition.z - 7.24f);
+        Vector3 cameraMovement = new Vector3(playerPosition.x, 3.87f, playerPosition.z - 9.24f);
 
         // Move the camera
         mainCamera.transform.position = cameraMovement;
