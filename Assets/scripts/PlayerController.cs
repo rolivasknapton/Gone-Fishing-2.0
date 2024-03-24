@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private float moveSpeed; // Speed of the player movement
 
     public GameObject fishingRod;
+    public GameObject shovel;
     private bool canFish;
     
     public bool currentlyFishing;
@@ -209,10 +210,18 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown("space"))
         {
-            nearbyObject.GetComponent<IInteractable>().Interact();
-            if (nearbyObject.GetComponent<ITalkable>() != null)
+
+            if (nearbyObject.GetComponent<IDiggable>() != null)
             {
-                
+                shovel.SetActive(true);
+            }
+
+            nearbyObject.GetComponent<IInteractable>().Interact();
+            
+            
+            if (nearbyObject != null && nearbyObject.GetComponent<ITalkable>() != null)
+            {
+
                 rb.velocity = Vector3.zero;
             }
         }

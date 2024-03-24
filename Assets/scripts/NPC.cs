@@ -12,7 +12,9 @@ public abstract class NPC : MonoBehaviour, IInteractable
         if (other.gameObject.tag == "Player")
         {
             playercontroller.StoreNearestGameObject(this.gameObject);
-            playercontroller.inventory.CheckForFishItems();
+            
+            
+            //playercontroller.inventory.CheckForFishItems();
         }
     }
     //when the player is not longer near franny the nearby object is deleted (should implement functionality to only clear nearby object if that object is franny
