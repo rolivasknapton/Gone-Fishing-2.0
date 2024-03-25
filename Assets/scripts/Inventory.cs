@@ -28,16 +28,19 @@ public class Inventory
     {
         return itemList;
     }
-    public void CheckForFishItems()
+    public bool CheckForFishItems()
     {
         foreach (Item item in itemList)
         {
             if (item.itemType == Item.ItemType.Fish)
             {
                 Debug.Log("Found a fish item!");
+                return true;
                 // Do whatever you want when a fish item is found
-                break; // Stop the loop once a fish item is found
+                //break; // Stop the loop once a fish item is found
             }
+            
         }
+        return false;
     }
 }
