@@ -16,3 +16,7 @@ MonoBehaviour:
   paragraphs:
   - ooo... is that a fish?
   - could I have that?
+  questionAsked: 1
+  response:
+  - thank you!
+  - ive been looking for that!

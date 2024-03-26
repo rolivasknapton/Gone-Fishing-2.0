@@ -19,6 +19,7 @@ public class Dialogue : MonoBehaviour
 
     private bool isTyping;
 
+    private bool progressInResponse;
 
     private string p;
 
@@ -42,6 +43,7 @@ public class Dialogue : MonoBehaviour
             {
                 //end convo
                 EndConversation();
+
                 return;
             }
         }
@@ -67,6 +69,17 @@ public class Dialogue : MonoBehaviour
         if (paragraphs.Count == 0)
         {
             conversationEnded = true;
+
+            if (dialogueText.questionAsked)
+            {
+                //Debug.Log("ask question!");
+                if (!progressInResponse)
+                {
+                    StartResponse(dialogueText);
+                }
+
+            }
+            
         }
     }
 
@@ -106,6 +119,9 @@ public class Dialogue : MonoBehaviour
         //reutrn bool to false
         conversationEnded = false;
 
+        //return response bool to false
+        progressInResponse = false;
+
         //notifyother scrupts
         convoInprogress = false;
 
@@ -118,6 +134,34 @@ public class Dialogue : MonoBehaviour
         
     }
 
+    private void StartResponse(DialogueText dialogueText)
+    {
+        
+        //notify npc
+        convoInprogress = true;
+
+        //notify the player
+        playercontroller.DialogueStarted();
+
+        //activate gameObject
+        if (!gameObject.activeSelf)
+        {
+            gameObject.SetActive(true);
+        }
+
+        //update the speaker name
+        NPCNameText.text = dialogueText.speakerName;
+
+        //progress
+        progressInResponse = true;
+
+        //add dialogue text to the queue
+        for (int i = 0; i < dialogueText.response.Length; i++)
+        {
+            paragraphs.Enqueue(dialogueText.response[i]);
+        }
+
+    }
 
     private IEnumerator TypeDialogueText(string p)
     {

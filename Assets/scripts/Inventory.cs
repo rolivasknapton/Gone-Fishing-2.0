@@ -34,7 +34,7 @@ public class Inventory
         {
             if (item.itemType == Item.ItemType.Fish)
             {
-                Debug.Log("Found a fish item!");
+                //Debug.Log("Found a fish item!");
                 return true;
                 // Do whatever you want when a fish item is found
                 //break; // Stop the loop once a fish item is found
