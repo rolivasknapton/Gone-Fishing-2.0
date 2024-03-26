@@ -98,6 +98,7 @@ public class Dialogue : MonoBehaviour
     private void EndConversation()
     {
         //clear the queue
+        paragraphs.Clear();
 
         //notify the player the convo is over
         playercontroller.DialogueEnded();
@@ -105,6 +106,7 @@ public class Dialogue : MonoBehaviour
         //reutrn bool to false
         conversationEnded = false;
 
+        //notifyother scrupts
         convoInprogress = false;
 
         //deactivate this gameobject
