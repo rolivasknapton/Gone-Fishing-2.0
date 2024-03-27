@@ -20,3 +20,4 @@ MonoBehaviour:
   response:
   - thank you!
   - ive been looking for that!
+  chainedText: {fileID: 0}

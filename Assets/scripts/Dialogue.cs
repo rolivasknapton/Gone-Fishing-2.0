@@ -70,17 +70,24 @@ public class Dialogue : MonoBehaviour
         {
             conversationEnded = true;
 
-            if (dialogueText.questionAsked)
-            {
-                //Debug.Log("ask question!");
-                if (!progressInResponse)
-                {
-                    StartResponse(dialogueText);
-                }
+        }
+        if (dialogueText.questionAsked && conversationEnded && !progressInResponse)
+        {
+            //automatically picks yes
+            StartResponse(dialogueText);
 
-            }
+            //need to add functionality 
+        }
+        if ((dialogueText.questionAsked && conversationEnded && progressInResponse) && dialogueText.chainedText != null)
+        {
+            //return bool to false; 
+            progressInResponse = false;
+            StartConversation(dialogueText.chainedText);
             
         }
+
+
+
     }
 
     private void StartConversation(DialogueText dialogueText)

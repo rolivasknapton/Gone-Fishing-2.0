@@ -13,5 +13,6 @@ public class DialogueText : ScriptableObject
     public bool questionAsked;
     [TextArea(5, 10)]
     public string[] response;
+    public DialogueText chainedText;
 
 }
