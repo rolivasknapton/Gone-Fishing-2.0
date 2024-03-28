@@ -11,8 +11,8 @@ public class DialogueText : ScriptableObject
     [TextArea(5, 10)]
     public string[] paragraphs;
     public bool questionAsked;
-    [TextArea(5, 10)]
-    public string[] response;
+    
     public DialogueText chainedText;
+    public DialogueText chainedTexttwo;
 
 }

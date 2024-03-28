@@ -9,6 +9,9 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private TextMeshProUGUI NPCDialogueText;
     [SerializeField] private float typeSpeed= 10f;
 
+    [SerializeField]  private GameObject yes_no;
+    
+
     public PlayerController playercontroller;
 
     private Queue<string> paragraphs = new Queue<string>();
@@ -22,7 +25,7 @@ public class Dialogue : MonoBehaviour
     private bool progressInResponse;
 
     private string p;
-
+    private bool question;
     private Coroutine typeDialogueCoroutine;
     private const string HTML_ALPHA = "<color=#00000000>";
     private const float MAX_TYPE_TIME = 0.1F;
@@ -43,7 +46,7 @@ public class Dialogue : MonoBehaviour
             {
                 //end convo
                 EndConversation();
-
+                
                 return;
             }
         }
@@ -51,9 +54,24 @@ public class Dialogue : MonoBehaviour
         //if there is something in the queue
         if (!isTyping)
         {
+            if (yes_no.activeSelf)
+            {
+                if (yes_no.GetComponent<Select_YesorNo>().YesSelected() == false)
+                {
+                    //clear the queue
+                    paragraphs.Clear();
+                    StartConversation(dialogueText.chainedTexttwo);
+                }
+            }
+
+
             p = paragraphs.Dequeue();
 
             typeDialogueCoroutine = StartCoroutine(TypeDialogueText(p));
+            if (yes_no.activeSelf)
+            {
+                yes_no.SetActive(false);
+            }
         }
 
         //conversation is being type=d out
@@ -69,19 +87,29 @@ public class Dialogue : MonoBehaviour
         if (paragraphs.Count == 0)
         {
             conversationEnded = true;
-
         }
-        if (dialogueText.questionAsked && conversationEnded && !progressInResponse)
+        if (question && conversationEnded)
         {
-            //automatically picks yes
-            StartResponse(dialogueText);
-
-            //need to add functionality 
+            Debug.Log("gay");
+            yes_no.gameObject.SetActive(true);
         }
-        if ((dialogueText.questionAsked && conversationEnded && progressInResponse) && dialogueText.chainedText != null)
+
+        //if (dialogueText.questionAsked && conversationEnded && !progressInResponse)
+        //{
+            
+        //    //automatically picks yes
+        //    StartResponse(dialogueText);
+            
+        //}
+        
+        if ((question && conversationEnded ) && dialogueText.chainedText != null)
         {
             //return bool to false; 
-            progressInResponse = false;
+            //progressInResponse = false;
+
+            //reutrn bool to false
+            conversationEnded = false;
+
             StartConversation(dialogueText.chainedText);
             
         }
@@ -96,6 +124,14 @@ public class Dialogue : MonoBehaviour
         //notify npc
         convoInprogress = true;
 
+        if (dialogueText.questionAsked)
+        {
+            question = true;
+        }
+        else
+        {
+            question = false;
+        }
         //notify the player
         playercontroller.DialogueStarted();
 
@@ -126,8 +162,8 @@ public class Dialogue : MonoBehaviour
         //reutrn bool to false
         conversationEnded = false;
 
-        //return response bool to false
-        progressInResponse = false;
+        ////return response bool to false
+        //progressInResponse = false;
 
         //notifyother scrupts
         convoInprogress = false;
@@ -141,34 +177,37 @@ public class Dialogue : MonoBehaviour
         
     }
 
-    private void StartResponse(DialogueText dialogueText)
-    {
+    //private void StartResponse(DialogueText dialogueText)
+    //{
         
-        //notify npc
-        convoInprogress = true;
+    //    //notify npc
+    //    convoInprogress = true;
 
-        //notify the player
-        playercontroller.DialogueStarted();
+    //    //notify the player
+    //    playercontroller.DialogueStarted();
 
-        //activate gameObject
-        if (!gameObject.activeSelf)
-        {
-            gameObject.SetActive(true);
-        }
+    //    //activate gameObject
+    //    if (!gameObject.activeSelf)
+    //    {
+    //        gameObject.SetActive(true);
+    //    }
 
-        //update the speaker name
-        NPCNameText.text = dialogueText.speakerName;
+    //    //update the speaker name
+    //    NPCNameText.text = dialogueText.speakerName;
 
-        //progress
-        progressInResponse = true;
+    //    //reutrn bool to false
+    //    conversationEnded = false;
 
-        //add dialogue text to the queue
-        for (int i = 0; i < dialogueText.response.Length; i++)
-        {
-            paragraphs.Enqueue(dialogueText.response[i]);
-        }
+    //    //progress
+    //    progressInResponse = true;
 
-    }
+    //    //add dialogue text to the queue
+    //    for (int i = 0; i < dialogueText.response.Length; i++)
+    //    {
+    //        paragraphs.Enqueue(dialogueText.response[i]);
+    //    }
+
+    //}
 
     private IEnumerator TypeDialogueText(string p)
     {

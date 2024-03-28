@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e44b171dc19e53e4dbb3dad477a34a78, type: 3}
-  m_Name: Franny_Asks_for_Fish
+  m_Name: happy
   m_EditorClassIdentifier: 
-  speakerName: Franny
+  speakerName: franny
   paragraphs:
-  - ooo... is that a fish?
-  - could I have that?
-  questionAsked: 1
-  chainedText: {fileID: 11400000, guid: 62287ec6858d27846a407580c169171d, type: 2}
-  chainedTexttwo: {fileID: 11400000, guid: db4dfaadd5343344e81577fb11ab73b1, type: 2}
+  - yay!
+  questionAsked: 0
+  chainedText: {fileID: 0}
+  chainedTexttwo: {fileID: 0}
