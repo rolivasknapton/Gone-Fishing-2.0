@@ -15,4 +15,7 @@ public class DialogueText : ScriptableObject
     public DialogueText chainedText;
     public DialogueText chainedTexttwo;
 
+    //public DialogueMethod dialogueMethod;
+    
+
 }

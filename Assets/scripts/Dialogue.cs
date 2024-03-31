@@ -30,6 +30,8 @@ public class Dialogue : MonoBehaviour
     private const string HTML_ALPHA = "<color=#00000000>";
     private const float MAX_TYPE_TIME = 0.1F;
 
+
+    private DialogueText currentlyDisplayedText;
     public void DisplayNextParagraph(DialogueText dialogueText)
     {
         //if nothing in que
@@ -44,6 +46,8 @@ public class Dialogue : MonoBehaviour
 
             else if (conversationEnded && !isTyping)
             {
+                DialogueMethod(currentlyDisplayedText);
+
                 //end convo
                 EndConversation();
                 
@@ -90,23 +94,14 @@ public class Dialogue : MonoBehaviour
         }
         if (question && conversationEnded)
         {
-            Debug.Log("gay");
+            //Debug.Log("gay");
             yes_no.gameObject.SetActive(true);
         }
 
-        //if (dialogueText.questionAsked && conversationEnded && !progressInResponse)
-        //{
-            
-        //    //automatically picks yes
-        //    StartResponse(dialogueText);
-            
-        //}
         
         if ((question && conversationEnded ) && dialogueText.chainedText != null)
         {
-            //return bool to false; 
-            //progressInResponse = false;
-
+            
             //reutrn bool to false
             conversationEnded = false;
 
@@ -120,6 +115,8 @@ public class Dialogue : MonoBehaviour
 
     private void StartConversation(DialogueText dialogueText)
     {
+        //update current text
+        currentlyDisplayedText = dialogueText;
 
         //notify npc
         convoInprogress = true;
@@ -177,37 +174,7 @@ public class Dialogue : MonoBehaviour
         
     }
 
-    //private void StartResponse(DialogueText dialogueText)
-    //{
-        
-    //    //notify npc
-    //    convoInprogress = true;
-
-    //    //notify the player
-    //    playercontroller.DialogueStarted();
-
-    //    //activate gameObject
-    //    if (!gameObject.activeSelf)
-    //    {
-    //        gameObject.SetActive(true);
-    //    }
-
-    //    //update the speaker name
-    //    NPCNameText.text = dialogueText.speakerName;
-
-    //    //reutrn bool to false
-    //    conversationEnded = false;
-
-    //    //progress
-    //    progressInResponse = true;
-
-    //    //add dialogue text to the queue
-    //    for (int i = 0; i < dialogueText.response.Length; i++)
-    //    {
-    //        paragraphs.Enqueue(dialogueText.response[i]);
-    //    }
-
-    //}
+    
 
     private IEnumerator TypeDialogueText(string p)
     {
@@ -250,6 +217,14 @@ public class Dialogue : MonoBehaviour
         else
         {
             return true;
+        }
+    }
+    public void DialogueMethod(DialogueText dialogueText)
+    {
+
+        if (dialogueText.name == "happy")
+        {
+            Debug.Log("take Fish!");
         }
     }
 }
