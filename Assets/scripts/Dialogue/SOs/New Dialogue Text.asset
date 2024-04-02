@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e44b171dc19e53e4dbb3dad477a34a78, type: 3}
-  m_Name: sad
+  m_Name: New Dialogue Text
   m_EditorClassIdentifier: 
   speakerName: Franny
   paragraphs:
-  - aww
+  - Ahh yes....the ever elusive keys. Lost them again today huh? Its as if they grow
+    legs and walk away daily now.
+  - I may know a thing or two, but I need to to do something for me first
   questionAsked: 0
   chainedText: {fileID: 0}
   chainedTexttwo: {fileID: 0}

@@ -15,4 +15,7 @@ MonoBehaviour:
   speakerName: Franny
   paragraphs:
   - 'Hello, deary. '
-  - i am looking for a fish
+  - How are you doing today?
+  questionAsked: 0
+  chainedText: {fileID: 11400000, guid: c84727a27c5436246a44f715a112d73e, type: 2}
+  chainedTexttwo: {fileID: 0}

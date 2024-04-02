@@ -34,8 +34,9 @@ public class Dialogue : MonoBehaviour
     private DialogueText currentlyDisplayedText;
     public void DisplayNextParagraph(DialogueText dialogueText)
     {
+        
         //if nothing in que
-        if(paragraphs.Count == 0)
+        if (paragraphs.Count == 0)
         {
             if (!conversationEnded)
             {
@@ -68,6 +69,8 @@ public class Dialogue : MonoBehaviour
                 }
             }
 
+            //update the speaker name
+            NPCNameText.text = currentlyDisplayedText.speakerName;
 
             p = paragraphs.Dequeue();
 
@@ -99,13 +102,13 @@ public class Dialogue : MonoBehaviour
         }
 
         
-        if ((question && conversationEnded ) && dialogueText.chainedText != null)
+        if (conversationEnded  && currentlyDisplayedText.chainedText != null)
         {
             
             //reutrn bool to false
             conversationEnded = false;
 
-            StartConversation(dialogueText.chainedText);
+            StartConversation(currentlyDisplayedText.chainedText);
             
         }
 
@@ -139,7 +142,7 @@ public class Dialogue : MonoBehaviour
         }
 
         //update the speaker name
-        NPCNameText.text = dialogueText.speakerName;
+        //NPCNameText.text = dialogueText.speakerName;
 
         //add dialogue text to the queue
         for (int i = 0; i < dialogueText.paragraphs.Length; i++)
@@ -227,7 +230,7 @@ public class Dialogue : MonoBehaviour
             //this takes the first fish in the inventory and deletes it
             //this is a mess of a line of code
             GameObject.FindWithTag("Player").GetComponent<PlayerController>().inventory.RemoveItem(GameObject.FindWithTag("Player").GetComponent<PlayerController>().inventory.GetFirstFishItem());
-            Debug.Log("take Fish!");
+            //Debug.Log("take Fish!");
         }
     }
 }

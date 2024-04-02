@@ -11,7 +11,7 @@ public abstract class NPC : MonoBehaviour, IInteractable
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("next to player");
+            //Debug.Log("next to player");
             if(playercontroller.nearbyObject == null)
             {
                 playercontroller.StoreNearestGameObject(this.gameObject);

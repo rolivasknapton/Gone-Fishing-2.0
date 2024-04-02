@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44b171dc19e53e4dbb3dad477a34a78, type: 3}
   m_Name: happy
   m_EditorClassIdentifier: 
-  speakerName: franny
+  speakerName: Franny
   paragraphs:
   - yay!
   questionAsked: 0

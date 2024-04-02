@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e44b171dc19e53e4dbb3dad477a34a78, type: 3}
-  m_Name: sad
+  m_Name: rupertgreetsfranny
   m_EditorClassIdentifier: 
-  speakerName: Franny
+  speakerName: Rupert
   paragraphs:
-  - aww
+  - Good morning Franny......what dismal weather we are having today.
+  - I was wondering, do you know where the house keys might be?
   questionAsked: 0
-  chainedText: {fileID: 0}
+  chainedText: {fileID: 11400000, guid: 7a9481431f10434459dee59dff0163b9, type: 2}
   chainedTexttwo: {fileID: 0}
