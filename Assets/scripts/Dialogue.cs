@@ -224,6 +224,8 @@ public class Dialogue : MonoBehaviour
 
         if (dialogueText.name == "happy")
         {
+            //this is a mess of a line of code
+            GameObject.FindWithTag("Player").GetComponent<PlayerController>().inventory.RemoveItem(GameObject.FindWithTag("Player").GetComponent<PlayerController>().inventory.GetFirstFishItem());
             Debug.Log("take Fish!");
         }
     }

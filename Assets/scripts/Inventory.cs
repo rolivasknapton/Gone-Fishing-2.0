@@ -24,6 +24,25 @@ public class Inventory
         itemList.Add(item);
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
+    public void RemoveItem(Item item)
+    {
+        itemList.Remove(item);
+        //Item itemInInventory = null;
+        //foreach (Item inventoryItem in itemList)
+        //{
+        //    if (inventoryItem.itemType == item.itemType)
+        //    {
+        //        inventoryItem.amount -= item.amount;
+        //        itemInInventory = inventoryItem;
+        //    }
+        //    if (itemInInventory != null && itemInInventory.amount <= 0)
+        //    {
+        //        itemList.Remove(itemInInventory);
+        //    }
+        //}
+
+        OnItemListChanged?.Invoke(this, EventArgs.Empty);
+    }
     public List<Item> GetItemList()
     {
         return itemList;
@@ -42,5 +61,21 @@ public class Inventory
             
         }
         return false;
+    }
+    public Item GetFirstFishItem()
+    {
+        foreach (Item item in itemList)
+        {
+            if (item.itemType == Item.ItemType.Fish)
+            {
+                //Debug.Log("Found a fish item!");
+                return item;
+                // Do whatever you want when a fish item is found
+                //break; // Stop the loop once a fish item is found
+            }
+
+        }
+        return null;
+
     }
 }
