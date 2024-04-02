@@ -9,7 +9,11 @@ public class Select_YesorNo : MonoBehaviour
     // Start is called before the first frame update
 
     private bool canPress = true;
-
+    private void OnEnable()
+    {
+        noSelected.SetActive(false);
+        yesSelected.SetActive(true);
+    }
     // Update is called once per frame
     void Update()
     {

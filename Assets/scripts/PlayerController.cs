@@ -7,6 +7,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float moveSpeed; // Speed of the player movement
 
+
+    [SerializeField]
+    private BoxCollider interactHitbox;
+
+
     public GameObject fishingRod;
     public GameObject shovel;
     private bool canFish;
@@ -21,6 +26,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private UI_Inventory uiInventory;
 
     public GameObject nearbyObject = null;
+
+
 
     public Inventory inventory;
     private void Awake()
