@@ -232,6 +232,10 @@ public class Dialogue : MonoBehaviour
             GameObject.FindWithTag("Player").GetComponent<PlayerController>().inventory.RemoveItem(GameObject.FindWithTag("Player").GetComponent<PlayerController>().inventory.GetFirstFishItem());
             //Debug.Log("take Fish!");
         }
+        if (dialogueText.name == "happy" || dialogueText.name == "sad")
+        {
+            franny_dialogue.Instance.IncrementDialogueInt();
+        }
     }
 }
 
