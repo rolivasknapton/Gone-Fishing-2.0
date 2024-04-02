@@ -233,6 +233,7 @@ MonoBehaviour:
   currentlyFishing: 0
   currentlySpeaking: 0
   uiInventory: {fileID: 1250060399}
+  nearbyObject: {fileID: 0}
 --- !u!54 &41489007
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2285,7 +2286,7 @@ Transform:
   m_GameObject: {fileID: 645642062}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.852, y: 0.51, z: 2.25}
+  m_LocalPosition: {x: -1.707, y: 0.51, z: 0.654}
   m_LocalScale: {x: 0.09558407, y: 0.09558407, z: 0.09558407}
   m_ConstrainProportionsScale: 0
   m_Children: []

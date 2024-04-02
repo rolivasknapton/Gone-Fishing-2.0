@@ -224,6 +224,7 @@ public class Dialogue : MonoBehaviour
 
         if (dialogueText.name == "happy")
         {
+            //this takes the first fish in the inventory and deletes it
             //this is a mess of a line of code
             GameObject.FindWithTag("Player").GetComponent<PlayerController>().inventory.RemoveItem(GameObject.FindWithTag("Player").GetComponent<PlayerController>().inventory.GetFirstFishItem());
             Debug.Log("take Fish!");

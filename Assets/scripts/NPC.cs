@@ -11,18 +11,27 @@ public abstract class NPC : MonoBehaviour, IInteractable
     {
         if (other.gameObject.tag == "Player")
         {
-            playercontroller.StoreNearestGameObject(this.gameObject);
+            Debug.Log("next to player");
+            if(playercontroller.nearbyObject == null)
+            {
+                playercontroller.StoreNearestGameObject(this.gameObject);
+            }
+            
             
             
             //playercontroller.inventory.CheckForFishItems();
         }
     }
-    //when the player is not longer near franny the nearby object is deleted (should implement functionality to only clear nearby object if that object is franny
+    
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            playercontroller.StoreNearestGameObject(null);
+            if (playercontroller.nearbyObject == this.gameObject)
+            {
+                playercontroller.StoreNearestGameObject(null);
+            }
+            
         }
     }
     public abstract void Interact();

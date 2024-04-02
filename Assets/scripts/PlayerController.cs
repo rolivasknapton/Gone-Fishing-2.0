@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     [SerializeField] private UI_Inventory uiInventory;
 
-    private GameObject nearbyObject = null;
+    public GameObject nearbyObject = null;
 
     public Inventory inventory;
     private void Awake()
