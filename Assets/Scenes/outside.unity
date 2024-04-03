@@ -4729,6 +4729,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1410789099}
   - component: {fileID: 1410789098}
+  - component: {fileID: 1410789100}
   m_Layer: 0
   m_Name: just the house
   m_TagString: Untagged
@@ -4803,6 +4804,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1410789100
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410789097}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 11.780899, y: 10.8, z: 8.8900795}
+  m_Center: {x: -0.14267413, y: 0, z: 4.3450403}
 --- !u!1 &1429596998
 GameObject:
   m_ObjectHideFlags: 0
@@ -5498,7 +5520,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89011a2e72c4ffc4bb63c30ecdc69949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IncrementDialogue: 0
   Franny_Asks_for_Fish: {fileID: 11400000, guid: 29af6df257b74c9419decc8c81a4f1a7, type: 2}
+  Franny_Come_Back: {fileID: 11400000, guid: 953203b09dc6033489fe1a637480c410, type: 2}
+  Franny_Thank_You: {fileID: 11400000, guid: 81275779d9f9ff041b4c2aee1eb7ab7f, type: 2}
 --- !u!1 &1612796779
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e44b171dc19e53e4dbb3dad477a34a78, type: 3}
-  m_Name: Test Conversation
+  m_Name: Franny_Thanks
   m_EditorClassIdentifier: 
   speakerName: Franny
   paragraphs:
-  - 'Hello, deary. '
-  - How are you doing today?
+  - 'Thank you so much for that Fish, Rupert. '
+  - I'll be honest, I have no Idea where the keys are...
+  - But if you ask around. someone else might be able to help you!
   questionAsked: 0
-  chainedText: {fileID: 11400000, guid: c84727a27c5436246a44f715a112d73e, type: 2}
+  chainedText: {fileID: 0}
   chainedTexttwo: {fileID: 0}

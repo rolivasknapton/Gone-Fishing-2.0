@@ -12,22 +12,27 @@ public class Franny : NPC, ITalkable
     public override void Interact()
     {
         //Debug.Log("interacted!");
-
         Talk(dialogueText);
     }
 
     public void Talk(DialogueText dialogueText)
     {
 
-        if (playercontroller.inventory.CheckForFishItems())
+        if (playercontroller.inventory.CheckForFishItems() && (franny_dialogue.Instance.IncrementDialogue == 1))
         {
             dialogueText = franny_dialogue.Instance.Franny_Asks_for_Fish;
         }
 
-        if ((franny_dialogue.Instance.IncrementDialogue == 0))
+        if (!playercontroller.inventory.CheckForFishItems() && (franny_dialogue.Instance.IncrementDialogue == 1))
         {
-            dialogue.DisplayNextParagraph(dialogueText);
-
+            dialogueText = franny_dialogue.Instance.Franny_Come_Back;
         }
+
+        if (franny_dialogue.Instance.IncrementDialogue == 2)
+        {
+            dialogueText = franny_dialogue.Instance.Franny_Thank_You;
+        }
+
+        dialogue.DisplayNextParagraph(dialogueText);
     }
 }

@@ -17,5 +17,7 @@ public class franny_dialogue : MonoBehaviour
         IncrementDialogue += 1;
     }
     public DialogueText Franny_Asks_for_Fish;
+    public DialogueText Franny_Come_Back;
+    public DialogueText Franny_Thank_You;
 
 }
