@@ -11,6 +11,7 @@ public class DialogueText : ScriptableObject
     [TextArea(5, 10)]
     public string[] paragraphs;
     public bool questionAsked;
+    public bool incrementFrannyDialogue;
     
     public DialogueText chainedText;
     public DialogueText chainedTexttwo;

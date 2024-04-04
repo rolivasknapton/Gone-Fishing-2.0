@@ -16,5 +16,6 @@ MonoBehaviour:
   paragraphs:
   - yay!
   questionAsked: 0
+  incrementFrannyDialogue: 1
   chainedText: {fileID: 0}
   chainedTexttwo: {fileID: 0}

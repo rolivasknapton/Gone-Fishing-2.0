@@ -47,7 +47,7 @@ public class Dialogue : MonoBehaviour
 
             else if (conversationEnded && !isTyping)
             {
-                DialogueMethod(currentlyDisplayedText);
+                IncrementDialogueMethod(currentlyDisplayedText);
 
                 //end convo
                 EndConversation();
@@ -71,6 +71,12 @@ public class Dialogue : MonoBehaviour
 
             //update the speaker name
             NPCNameText.text = currentlyDisplayedText.speakerName;
+
+            //grabs the fish
+            if (currentlyDisplayedText.name == "happy")
+            {
+                GameObject.FindWithTag("Player").GetComponent<PlayerController>().inventory.RemoveItem(GameObject.FindWithTag("Player").GetComponent<PlayerController>().inventory.GetFirstItemOfType(Item.ItemType.Fish));
+            }
 
             p = paragraphs.Dequeue();
 
@@ -222,24 +228,24 @@ public class Dialogue : MonoBehaviour
             return true;
         }
     }
-    public void DialogueMethod(DialogueText dialogueText)
+    public void IncrementDialogueMethod(DialogueText dialogueText)
     {
+        //franny dialogue methods
 
         if (dialogueText.name == "happy")
         {
             //this takes the first fish in the inventory and deletes it
             //this is a mess of a line of code
-            GameObject.FindWithTag("Player").GetComponent<PlayerController>().inventory.RemoveItem(GameObject.FindWithTag("Player").GetComponent<PlayerController>().inventory.GetFirstFishItem());
+            //GameObject.FindWithTag("Player").GetComponent<PlayerController>().inventory.RemoveItem(GameObject.FindWithTag("Player").GetComponent<PlayerController>().inventory.GetFirstItemOfType(Item.ItemType.Fish));
             //Debug.Log("take Fish!");
         }
-        if (dialogueText.name == "Rupert_Sees")
+        if (dialogueText.incrementFrannyDialogue)
         {
             franny_dialogue.Instance.IncrementDialogueInt();
         }
-        if (dialogueText.name == "happy")
-        {
-            franny_dialogue.Instance.IncrementDialogueInt();
-        }
+
+        //Frankdialogue methods
+        
     }
 }
 

@@ -47,6 +47,7 @@ public class Inventory
     {
         return itemList;
     }
+    
     public bool CheckForFishItems()
     {
         foreach (Item item in itemList)
@@ -62,11 +63,11 @@ public class Inventory
         }
         return false;
     }
-    public Item GetFirstFishItem()
+    public Item GetFirstItemOfType(Item.ItemType i)
     {
         foreach (Item item in itemList)
         {
-            if (item.itemType == Item.ItemType.Fish)
+            if (item.itemType == i)
             {
                 //Debug.Log("Found a fish item!");
                 return item;
