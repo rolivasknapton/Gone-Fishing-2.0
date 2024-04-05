@@ -48,11 +48,11 @@ public class Inventory
         return itemList;
     }
     
-    public bool CheckForFishItems()
+    public bool CheckForItemOfType(Item.ItemType i)
     {
         foreach (Item item in itemList)
         {
-            if (item.itemType == Item.ItemType.Fish)
+            if (item.itemType == i)
             {
                 //Debug.Log("Found a fish item!");
                 return true;

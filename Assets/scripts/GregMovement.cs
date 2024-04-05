@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class GregMovement : MonoBehaviour
 {
-
+    public GameObject poof;
     float speed = 1f;
     public float yValue = 0f; // You can adjust the y value as per your requirement
     public Vector3 direction; // Variable to store the generated direction
     private bool isTalking;
-
+    public bool isVisible;
     private void Start()
     {
         // Invoke the GenerateDirection method every few seconds starting after 0 seconds
         InvokeRepeating("GenerateDirection", 0f, 4f);
+
+        isVisible = true;
     }
 
     // Update is called once per frame
@@ -57,6 +59,42 @@ public class GregMovement : MonoBehaviour
     }
     public void EndConversation()
     {
+        //every time the conversation ends greg converation, hes "poofs away"
+        GregPoof();
+
         isTalking = false;
+
+    }
+    private void GregPoof()
+    {
+        Vector3 currentPosition = transform.position;
+        Instantiate(poof, currentPosition, Quaternion.identity);
+        SpriteRenderer spriteRenderer;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // Check if the SpriteRenderer component exists
+        if (spriteRenderer != null)
+        {
+            //make uninteractable
+            isVisible = false;
+
+            // Disable the SpriteRenderer
+            spriteRenderer.enabled = false;
+
+            //in 1 second enable the sprite rendera again
+            StartCoroutine(EnableSpriteRendererAfterDelay(spriteRenderer));
+        }
+        
+    }
+    private IEnumerator EnableSpriteRendererAfterDelay(SpriteRenderer renderer)
+    {
+        // Wait for 1 second
+        yield return new WaitForSeconds(10f);
+
+        // Enable the SpriteRenderer component
+        renderer.enabled = true;
+
+        //make interactable again
+        isVisible = true;
     }
 }

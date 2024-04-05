@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e44b171dc19e53e4dbb3dad477a34a78, type: 3}
-  m_Name: happy
+  m_Name: Rupert_AsksFrank
   m_EditorClassIdentifier: 
-  speakerName: Franny
+  speakerName: Rupert
   paragraphs:
-  - yay!
+  - 'Frank, now that I got my hands dirty for yours.... '
+  - You wouldn't happen to know where the house keys are.....would you?
   questionAsked: 0
-  incrementFrannyDialogue: 1
+  incrementFrannyDialogue: 0
   incrementFrankDialogue: 0
   chainedText: {fileID: 0}
   chainedTexttwo: {fileID: 0}

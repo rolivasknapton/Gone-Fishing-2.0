@@ -8,23 +8,30 @@ public class Greg : NPC, ITalkable
     [SerializeField] private DialogueText dialogueText;
     [SerializeField] private Dialogue dialogue;
 
-
+    private GregMovement gregMovement;
+    private void Start()
+    {
+        gregMovement = this.GetComponent<GregMovement>();
+    }
     public override void Interact()
     {
-        //Debug.Log("interacted!");
-        Talk(dialogueText);
-        if (dialogue.CheckIfConvoEnded())
+        if (gregMovement.isVisible)
         {
-           this.GetComponent<GregMovement>().EndConversation();
+            //Debug.Log("interacted!");
+            Talk(dialogueText);
+            if (dialogue.CheckIfConvoEnded())
+            {
+                gregMovement.EndConversation();
+            }
         }
+        
     }
 
     public void Talk(DialogueText dialogueText)
     {
         dialogue.DisplayNextParagraph(dialogueText);
-        this.GetComponent<GregMovement>().StartConversation();
-        
 
+        gregMovement.StartConversation();
         
     }
 

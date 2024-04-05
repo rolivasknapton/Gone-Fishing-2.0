@@ -260,7 +260,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &41489008
 BoxCollider:
@@ -1740,6 +1740,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IncrementDialogue: 0
+  Frank_Advises_Digging: {fileID: 11400000, guid: d6327e3139c913143980eb796aa0aafe, type: 2}
+  Frank_Requests_Hand: {fileID: 11400000, guid: 8360e13b1e82e2e40852739780cfe2db, type: 2}
+  Frank_Keys: {fileID: 11400000, guid: 8c87ee3364686714fb4908d7eafa9470, type: 2}
 --- !u!1 &530566936
 GameObject:
   m_ObjectHideFlags: 0
@@ -2264,6 +2267,7 @@ GameObject:
   - component: {fileID: 645642066}
   - component: {fileID: 645642068}
   - component: {fileID: 645642067}
+  - component: {fileID: 645642069}
   m_Layer: 0
   m_Name: greg
   m_TagString: Untagged
@@ -2346,8 +2350,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 645642062}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 12.78
+  m_Drag: 8.48
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -2363,7 +2367,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &645642066
 MonoBehaviour:
@@ -2377,8 +2381,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c752ae59edc8fe4fbcc0daf28361073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poof: {fileID: 187194478385558391, guid: d10f2a4ac0c55484a914e3597ff0a2e7, type: 3}
   yValue: 0
   direction: {x: 0, y: 0, z: 0}
+  isVisible: 0
 --- !u!135 &645642067
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2415,6 +2421,29 @@ MonoBehaviour:
   playercontroller: {fileID: 41489006}
   dialogueText: {fileID: 11400000, guid: 65ca5a78765dd4c48bbade16e3c4aa40, type: 2}
   dialogue: {fileID: 1742790179}
+--- !u!136 &645642069
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645642062}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 4.37
+  m_Height: 10.24
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &680554500
 GameObject:
   m_ObjectHideFlags: 0
@@ -4579,6 +4608,7 @@ GameObject:
   - component: {fileID: 1325527343}
   - component: {fileID: 1325527346}
   - component: {fileID: 1325527345}
+  - component: {fileID: 1325527347}
   m_Layer: 0
   m_Name: frank
   m_TagString: Untagged
@@ -4669,6 +4699,7 @@ MonoBehaviour:
   playercontroller: {fileID: 41489006}
   dialogueText: {fileID: 11400000, guid: 023671fb2c45cfa49b4b33e38b9886ca, type: 2}
   dialogue: {fileID: 1742790179}
+  FrankWithHand: {fileID: 21300000, guid: 32362b51012be08479eaea409c597427, type: 3}
 --- !u!135 &1325527346
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4689,6 +4720,29 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 6.09
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &1325527347
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325527342}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3.48
+  m_Height: 9.45
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1340300901
 GameObject:
@@ -4869,8 +4923,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 11.780899, y: 10.8, z: 8.8900795}
-  m_Center: {x: -0.14267413, y: 0, z: 4.3450403}
+  m_Size: {x: 11.780899, y: 10.8, z: 9.298394}
+  m_Center: {x: -0.14267413, y: 0, z: 4.1408677}
 --- !u!1 &1429596998
 GameObject:
   m_ObjectHideFlags: 0
@@ -5927,6 +5981,8 @@ MonoBehaviour:
   typeSpeed: 10
   yes_no: {fileID: 2113725702}
   playercontroller: {fileID: 41489006}
+  currentlyDisplayedText: {fileID: 0}
+  frank: {fileID: 1325527342}
 --- !u!1 &1755991103
 GameObject:
   m_ObjectHideFlags: 0

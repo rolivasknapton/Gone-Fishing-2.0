@@ -17,7 +17,11 @@ public class Frank_Dialogue : MonoBehaviour
     {
         IncrementDialogue += 1;
     }
-    
+
+
+    public DialogueText Frank_Advises_Digging;
+    public DialogueText Frank_Requests_Hand;
+    public DialogueText Frank_Keys;
 
 
 }

@@ -16,3 +16,8 @@ MonoBehaviour:
   paragraphs:
   - MORNING RUPERT
   - WILL YOU LEND ME A HAND?....
+  questionAsked: 0
+  incrementFrannyDialogue: 0
+  incrementFrankDialogue: 1
+  chainedText: {fileID: 0}
+  chainedTexttwo: {fileID: 0}

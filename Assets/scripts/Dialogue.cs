@@ -30,8 +30,16 @@ public class Dialogue : MonoBehaviour
     private const string HTML_ALPHA = "<color=#00000000>";
     private const float MAX_TYPE_TIME = 0.1F;
 
+    private Inventory inventory;
+    public DialogueText currentlyDisplayedText;
 
-    private DialogueText currentlyDisplayedText;
+    [SerializeField]
+    private GameObject frank;
+
+    private void OnEnable()
+    {
+        inventory = GameObject.FindWithTag("Player").GetComponent<PlayerController>().inventory;
+    }
     public void DisplayNextParagraph(DialogueText dialogueText)
     {
         
@@ -47,6 +55,7 @@ public class Dialogue : MonoBehaviour
 
             else if (conversationEnded && !isTyping)
             {
+                //increment the Dialogue at the end of the convo
                 IncrementDialogueMethod(currentlyDisplayedText);
 
                 //end convo
@@ -72,11 +81,9 @@ public class Dialogue : MonoBehaviour
             //update the speaker name
             NPCNameText.text = currentlyDisplayedText.speakerName;
 
-            //grabs the fish
-            if (currentlyDisplayedText.name == "happy")
-            {
-                GameObject.FindWithTag("Player").GetComponent<PlayerController>().inventory.RemoveItem(GameObject.FindWithTag("Player").GetComponent<PlayerController>().inventory.GetFirstItemOfType(Item.ItemType.Fish));
-            }
+            //executed relevant code if on a relevant dialogue
+            StartOfDialogueMethod();
+          
 
             p = paragraphs.Dequeue();
 
@@ -92,10 +99,6 @@ public class Dialogue : MonoBehaviour
         {
             FinishParagraphEarly();
         }
-        
-
-        //update our conversation text
-        //NPCDialogueText.text = p;
 
         if (paragraphs.Count == 0)
         {
@@ -107,7 +110,6 @@ public class Dialogue : MonoBehaviour
             yes_no.gameObject.SetActive(true);
         }
 
-        
         if (conversationEnded  && currentlyDisplayedText.chainedText != null)
         {
             
@@ -117,9 +119,6 @@ public class Dialogue : MonoBehaviour
             StartConversation(currentlyDisplayedText.chainedText);
             
         }
-
-
-
     }
 
     private void StartConversation(DialogueText dialogueText)
@@ -147,9 +146,6 @@ public class Dialogue : MonoBehaviour
             gameObject.SetActive(true);
         }
 
-        //update the speaker name
-        //NPCNameText.text = dialogueText.speakerName;
-
         //add dialogue text to the queue
         for (int i = 0; i < dialogueText.paragraphs.Length; i++)
         {
@@ -168,9 +164,6 @@ public class Dialogue : MonoBehaviour
         //reutrn bool to false
         conversationEnded = false;
 
-        ////return response bool to false
-        //progressInResponse = false;
-
         //notifyother scrupts
         convoInprogress = false;
 
@@ -179,11 +172,7 @@ public class Dialogue : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-
-        
     }
-
-    
 
     private IEnumerator TypeDialogueText(string p)
     {
@@ -231,21 +220,34 @@ public class Dialogue : MonoBehaviour
     public void IncrementDialogueMethod(DialogueText dialogueText)
     {
         //franny dialogue methods
-
-        if (dialogueText.name == "happy")
-        {
-            //this takes the first fish in the inventory and deletes it
-            //this is a mess of a line of code
-            //GameObject.FindWithTag("Player").GetComponent<PlayerController>().inventory.RemoveItem(GameObject.FindWithTag("Player").GetComponent<PlayerController>().inventory.GetFirstItemOfType(Item.ItemType.Fish));
-            //Debug.Log("take Fish!");
-        }
         if (dialogueText.incrementFrannyDialogue)
         {
             franny_dialogue.Instance.IncrementDialogueInt();
         }
 
         //Frankdialogue methods
-        
+        if (dialogueText.incrementFrankDialogue)
+        {
+            Frank_Dialogue.Instance.IncrementDialogueInt();
+        }
+
+    }
+    public void StartOfDialogueMethod()
+    {
+        ////grabs the fish if on the correct dialogue
+        if (currentlyDisplayedText.name == "happy")
+        {
+            inventory.RemoveItem(inventory.GetFirstItemOfType(Item.ItemType.Fish));
+        }
+        //grabs the hand if on the correct dialogue
+        if (currentlyDisplayedText.name == "Frank_Happy")
+        {
+            inventory.RemoveItem(inventory.GetFirstItemOfType(Item.ItemType.Hand));
+
+            //give frank hand
+            frank.GetComponent<Frank>().GiveHand();
+            
+        }
     }
 }
 
