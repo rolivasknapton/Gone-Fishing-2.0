@@ -17,7 +17,12 @@ public class DialogueText : ScriptableObject
     public DialogueText chainedText;
     public DialogueText chainedTexttwo;
 
-    //public DialogueMethod dialogueMethod;
-    
+
+    //change the currentlty speaking to npc's dialogue increment to a specifc numnber
+    //change this value on the last dialogue text SO
+    //that you wish to close out of and then play a specific SO after
+    public int incrementDialogueTo =-1 ;
+    //incrementDialogueby
+
 
 }

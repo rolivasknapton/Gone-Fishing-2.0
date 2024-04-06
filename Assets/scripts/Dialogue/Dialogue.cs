@@ -56,6 +56,8 @@ public class Dialogue : MonoBehaviour
             else if (conversationEnded && !isTyping)
             {
                 //increment the Dialogue at the end of the convo
+                //( we do it here because if we do it at the beginning it will happen on every paragraph of the dialogue)
+                //while this only calls once at the end of the dialgue text SO
                 IncrementDialogueMethod(currentlyDisplayedText);
 
                 //end convo
@@ -83,8 +85,8 @@ public class Dialogue : MonoBehaviour
 
             //executed relevant code if on a relevant dialogue
             StartOfDialogueMethod();
-          
 
+            
             p = paragraphs.Dequeue();
 
             typeDialogueCoroutine = StartCoroutine(TypeDialogueText(p));
@@ -110,6 +112,7 @@ public class Dialogue : MonoBehaviour
             yes_no.gameObject.SetActive(true);
         }
 
+        //at the end of this dialoguetext, start the first chained text if it is there.
         if (conversationEnded  && currentlyDisplayedText.chainedText != null)
         {
             
@@ -117,8 +120,14 @@ public class Dialogue : MonoBehaviour
             conversationEnded = false;
 
             StartConversation(currentlyDisplayedText.chainedText);
-            
+
+        }//if the player has talked to all of the other villagers, then start the second chained text.
+        else if (conversationEnded && currentlyDisplayedText.chainedTexttwo != null )
+        {
+            //StartConversation(currentlyDisplayedText.chainedTexttwo);
         }
+
+        
     }
 
     private void StartConversation(DialogueText dialogueText)
@@ -223,12 +232,21 @@ public class Dialogue : MonoBehaviour
         if (dialogueText.incrementFrannyDialogue)
         {
             franny_dialogue.Instance.IncrementDialogueInt();
+
+            if (dialogueText.incrementDialogueTo >= 0)
+            {
+                franny_dialogue.Instance.IncrementDialogueIntTo(dialogueText.incrementDialogueTo);
+            }
         }
 
         //Frankdialogue methods
         if (dialogueText.incrementFrankDialogue)
         {
             Frank_Dialogue.Instance.IncrementDialogueInt();
+            if (dialogueText.incrementDialogueTo >= 0)
+            {
+                Frank_Dialogue.Instance.IncrementDialogueIntTo(dialogueText.incrementDialogueTo);
+            }
         }
 
     }
