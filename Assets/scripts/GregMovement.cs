@@ -88,13 +88,17 @@ public class GregMovement : MonoBehaviour
     }
     private IEnumerator EnableSpriteRendererAfterDelay(SpriteRenderer renderer)
     {
-        // Wait for 1 second
-        yield return new WaitForSeconds(10f);
+        // Wait for 10 second
+        yield return new WaitForSeconds(3f);
 
         // Enable the SpriteRenderer component
         renderer.enabled = true;
 
         //make interactable again
         isVisible = true;
+
+        //make another poof
+        Vector3 currentPosition = transform.position;
+        Instantiate(poof, currentPosition, Quaternion.identity);
     }
 }
