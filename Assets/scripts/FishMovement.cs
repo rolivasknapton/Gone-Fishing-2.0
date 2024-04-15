@@ -16,7 +16,8 @@ public class FishMovement : MonoBehaviour
     public bool FishNearHook = false;
 
     public bool isMovingTowardsPlayer;
-
+    private GameObject player;
+    private PlayerController playercontroller;
 
     private float yPosition = 0.019f;
     public float duration = 1.0f;
@@ -27,6 +28,8 @@ public class FishMovement : MonoBehaviour
         currentPosition = transform.position;
 
         water = GameObject.FindWithTag("Water");
+        player = GameObject.FindWithTag("Player");
+        playercontroller = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         waterCollider = water.GetComponent<CapsuleCollider>();
 
         fishDirection = GetRandomPointInCollider(waterCollider);
@@ -57,14 +60,14 @@ public class FishMovement : MonoBehaviour
         }
 
         //checks if fish is moving towards player and if the player moves then change direction
-        if (isMovingTowardsPlayer && GameObject.FindWithTag("Player").GetComponent<Rigidbody>().velocity != Vector3.zero)
+        if (isMovingTowardsPlayer && player.GetComponent<Rigidbody>().velocity != Vector3.zero)
         {
             //Debug.Log("player moved");
             StartFishWander();
 
             isMovingTowardsPlayer = false;
         }
-        if (isMovingTowardsPlayer && Input.GetKeyDown("space"))
+        if (isMovingTowardsPlayer && Input.GetKeyDown("space") && !playercontroller.fishButtonDown)
         {
             StartFishWander();
         }
@@ -74,7 +77,7 @@ public class FishMovement : MonoBehaviour
             Destroy(gameObject);
 
             //adds item to inventory
-            GameObject.FindWithTag("Player").GetComponent<PlayerController>().inventory.AddItem(new Item { itemType = Item.ItemType.Fish, amount = 1 });
+            playercontroller.inventory.AddItem(new Item { itemType = Item.ItemType.Fish, amount = 1 });
             
             
             water.GetComponent<Pond>().fishInPond = RemoveGameObjectFromArray(water.GetComponent<Pond>().fishInPond, gameObject);
@@ -115,6 +118,7 @@ public class FishMovement : MonoBehaviour
 
     public void MoveTowardPlayer()
     {
+        Debug.Log("fisgh");
         //stop random fish movement
         CancelInvoke(); 
 

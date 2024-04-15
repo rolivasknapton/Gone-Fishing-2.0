@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     public GameObject nearbyObject = null;
 
 
-
+    public bool fishButtonDown;
     public Inventory inventory;
     private void Awake()
     {
@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
         OnSpaceActivateNearbyObject();
 
         
-
+        
         //Interact button
         if (Input.GetKeyDown("space"))
         {
@@ -140,9 +140,14 @@ public class PlayerController : MonoBehaviour
             else if (CanFish())
             {
                 PlayerFish();
+                fishButtonDown = true;
+                
             }
         }
-
+        if (Input.GetKeyUp("space") && fishButtonDown)
+        {
+            fishButtonDown = false;
+        }
         
 
         

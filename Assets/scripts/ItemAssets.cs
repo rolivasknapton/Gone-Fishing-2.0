@@ -18,4 +18,5 @@ public class ItemAssets : MonoBehaviour
     public Sprite healthPotionSprite;
     public Sprite manaPotionSprite;
     public Sprite handSprite;
+    public Sprite keySprite;
 }

@@ -19,6 +19,7 @@ public class Frank_Dialogue : NPC_Dialogue
     public DialogueText Frank_Advises_Digging;
     public DialogueText Frank_Requests_Hand;
     public DialogueText Frank_Keys;
+    public DialogueText Frank_You_Have_Keys;
 
 
 }

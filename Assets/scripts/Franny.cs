@@ -35,6 +35,10 @@ public class Franny : NPC, ITalkable
         {
             dialogueText = franny_dialogue.Instance.Franny_Thank_You;
         }
+        if(franny_dialogue.Instance.IncrementDialogue == 10)
+        {
+            dialogueText = franny_dialogue.Instance.Franny_You_Have_Keys;
+        }
 
         dialogue.DisplayNextParagraph(dialogueText);
     }

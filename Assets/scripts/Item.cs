@@ -14,6 +14,7 @@ public class Item
         Medkit,
         Fish,
         Hand,
+        Key,
     }
     public ItemType itemType;
     public int amount;
@@ -28,6 +29,7 @@ public class Item
             case ItemType.ManaPotion: return ItemAssets.Instance.manaPotionSprite;
             case ItemType.Fish: return ItemAssets.Instance.fishSprite;
             case ItemType.Hand: return ItemAssets.Instance.handSprite;
+            case ItemType.Key: return ItemAssets.Instance.keySprite;
         }
     }
 

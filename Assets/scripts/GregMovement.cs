@@ -101,4 +101,13 @@ public class GregMovement : MonoBehaviour
         Vector3 currentPosition = transform.position;
         Instantiate(poof, currentPosition, Quaternion.identity);
     }
+    public void ChangePosition()
+    {
+        // Set the new position
+        transform.position = new Vector3(0f, 0.51f, 0f);
+
+        //make another poof
+        Vector3 currentPosition = transform.position;
+        Instantiate(poof, currentPosition, Quaternion.identity);
+    }
 }

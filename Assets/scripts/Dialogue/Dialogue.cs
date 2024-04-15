@@ -7,10 +7,10 @@ public class Dialogue : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI NPCNameText;
     [SerializeField] private TextMeshProUGUI NPCDialogueText;
-    [SerializeField] private float typeSpeed= 10f;
+    [SerializeField] private float typeSpeed = 10f;
 
-    [SerializeField]  private GameObject yes_no;
-    
+    [SerializeField] private GameObject yes_no;
+
 
     public PlayerController playercontroller;
 
@@ -42,7 +42,7 @@ public class Dialogue : MonoBehaviour
     }
     public void DisplayNextParagraph(DialogueText dialogueText)
     {
-        
+
         //if nothing in que
         if (paragraphs.Count == 0)
         {
@@ -50,7 +50,7 @@ public class Dialogue : MonoBehaviour
             {
                 //start convo
                 StartConversation(dialogueText);
-                
+
             }
 
             else if (conversationEnded && !isTyping)
@@ -60,9 +60,15 @@ public class Dialogue : MonoBehaviour
                 //while this only calls once at the end of the dialgue text SO
                 IncrementDialogueMethod(currentlyDisplayedText);
 
+
+                if (currentlyDisplayedText.name == "Frank_Has_Keys" || currentlyDisplayedText.name == "Franny_Has_Keys")
+                {
+                    playercontroller.inventory.AddItem(new Item { itemType = Item.ItemType.Key, amount = 1 });
+                }
+
                 //end convo
                 EndConversation();
-                
+
                 return;
             }
         }
@@ -86,7 +92,7 @@ public class Dialogue : MonoBehaviour
             //executed relevant code if on a relevant dialogue
             StartOfDialogueMethod();
 
-            
+
             p = paragraphs.Dequeue();
 
             typeDialogueCoroutine = StartCoroutine(TypeDialogueText(p));
@@ -113,21 +119,21 @@ public class Dialogue : MonoBehaviour
         }
 
         //at the end of this dialoguetext, start the first chained text if it is there.
-        if (conversationEnded  && currentlyDisplayedText.chainedText != null)
+        if (conversationEnded && currentlyDisplayedText.chainedText != null)
         {
-            
+
             //reutrn bool to false
             conversationEnded = false;
 
             StartConversation(currentlyDisplayedText.chainedText);
 
         }//if the player has talked to all of the other villagers, then start the second chained text.
-        else if (conversationEnded && currentlyDisplayedText.chainedTexttwo != null )
+        else if (conversationEnded && currentlyDisplayedText.chainedTexttwo != null && Rupert_Dialogue.Instance.IncrementDialogue == 2)
         {
-            //StartConversation(currentlyDisplayedText.chainedTexttwo);
+            StartConversation(currentlyDisplayedText.chainedTexttwo);
         }
 
-        
+
     }
 
     private void StartConversation(DialogueText dialogueText)
@@ -236,6 +242,8 @@ public class Dialogue : MonoBehaviour
             if (dialogueText.incrementDialogueTo >= 0)
             {
                 franny_dialogue.Instance.IncrementDialogueIntTo(dialogueText.incrementDialogueTo);
+                SetAllNPCDialogue(dialogueText);
+
             }
         }
 
@@ -246,9 +254,10 @@ public class Dialogue : MonoBehaviour
             if (dialogueText.incrementDialogueTo >= 0)
             {
                 Frank_Dialogue.Instance.IncrementDialogueIntTo(dialogueText.incrementDialogueTo);
+                SetAllNPCDialogue(dialogueText);
             }
         }
-
+        
     }
     public void StartOfDialogueMethod()
     {
@@ -256,16 +265,29 @@ public class Dialogue : MonoBehaviour
         if (currentlyDisplayedText.name == "happy")
         {
             inventory.RemoveItem(inventory.GetFirstItemOfType(Item.ItemType.Fish));
+
+            Rupert_Dialogue.Instance.IncrementDialogueInt();
         }
         //grabs the hand if on the correct dialogue
         if (currentlyDisplayedText.name == "Frank_Happy")
         {
             inventory.RemoveItem(inventory.GetFirstItemOfType(Item.ItemType.Hand));
-
+            Rupert_Dialogue.Instance.IncrementDialogueInt();
             //give frank hand
             frank.GetComponent<Frank>().GiveHand();
-            
+
+        }
+        //give the player an item
+        
+    }
+    private void SetAllNPCDialogue(DialogueText dialogueText)
+    {
+        if (dialogueText.incrementDialogueTo == 10)
+        {
+            franny_dialogue.Instance.IncrementDialogueIntTo(dialogueText.incrementDialogueTo);
+            Frank_Dialogue.Instance.IncrementDialogueIntTo(dialogueText.incrementDialogueTo);
         }
     }
+
 }
 

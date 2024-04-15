@@ -18,6 +18,7 @@ MonoBehaviour:
   questionAsked: 0
   incrementFrannyDialogue: 1
   incrementFrankDialogue: 0
+  incrementRupertDialogue: 0
   chainedText: {fileID: 0}
   chainedTexttwo: {fileID: 0}
-  incrementDialogueTo: -1
+  incrementDialogueTo: 10

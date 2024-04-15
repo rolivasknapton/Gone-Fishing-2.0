@@ -16,6 +16,7 @@ public class Pond : MonoBehaviour, IFishable
 
     public GameObject GetRandomFish()
     {
+        
         if (fishInPond.Length == 0)
         {
             Debug.LogWarning("The fishInPond list is empty!");
