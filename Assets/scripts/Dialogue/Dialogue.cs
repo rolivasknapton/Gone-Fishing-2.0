@@ -12,7 +12,7 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private GameObject yes_no;
 
 
-    public PlayerController playercontroller;
+    private PlayerController playercontroller;
 
     private Queue<string> paragraphs = new Queue<string>();
 
@@ -33,12 +33,14 @@ public class Dialogue : MonoBehaviour
     private Inventory inventory;
     public DialogueText currentlyDisplayedText;
 
-    [SerializeField]
+    
     private GameObject frank;
     
     private void OnEnable()
     {
+        playercontroller = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         inventory = GameObject.FindWithTag("Player").GetComponent<PlayerController>().inventory;
+        frank = GameObject.Find("frank");
     }
     public void DisplayNextParagraph(DialogueText dialogueText)
     {
@@ -152,8 +154,7 @@ public class Dialogue : MonoBehaviour
         {
             question = false;
         }
-        //notify the player
-        playercontroller.DialogueStarted();
+        
 
         //activate gameObject
         if (!gameObject.activeSelf)
@@ -167,6 +168,8 @@ public class Dialogue : MonoBehaviour
             paragraphs.Enqueue(dialogueText.paragraphs[i]);
         }
 
+        //notify the player
+        playercontroller.DialogueStarted();
     }
     private void EndConversation()
     {
