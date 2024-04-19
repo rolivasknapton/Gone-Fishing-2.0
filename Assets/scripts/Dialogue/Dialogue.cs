@@ -35,7 +35,7 @@ public class Dialogue : MonoBehaviour
 
     [SerializeField]
     private GameObject frank;
-
+    
     private void OnEnable()
     {
         inventory = GameObject.FindWithTag("Player").GetComponent<PlayerController>().inventory;
@@ -242,6 +242,8 @@ public class Dialogue : MonoBehaviour
             if (dialogueText.incrementDialogueTo >= 0)
             {
                 franny_dialogue.Instance.IncrementDialogueIntTo(dialogueText.incrementDialogueTo);
+                
+                //if the value of the above method is 10 then all dialgoues are set to 10 as well its a way of progressing the narrative along so all of the npcs are aware of the progression.
                 SetAllNPCDialogue(dialogueText);
 
             }
