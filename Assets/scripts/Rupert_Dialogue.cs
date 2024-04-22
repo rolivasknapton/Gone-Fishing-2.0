@@ -12,4 +12,5 @@ public class Rupert_Dialogue : NPC_Dialogue
         Instance = this;
     }
 
+    public DialogueText Rupert_Refuses_Stairs;
 }

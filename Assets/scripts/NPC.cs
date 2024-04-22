@@ -16,10 +16,7 @@ public abstract class NPC : MonoBehaviour, IInteractable
             {
                 playercontroller.StoreNearestGameObject(this.gameObject);
             }
-            
-            
-            
-            //playercontroller.inventory.CheckForFishItems();
+           
         }
     }
     

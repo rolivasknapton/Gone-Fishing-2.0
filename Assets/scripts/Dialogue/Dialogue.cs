@@ -44,6 +44,8 @@ public class Dialogue : MonoBehaviour
     }
     public void DisplayNextParagraph(DialogueText dialogueText)
     {
+        //stop the player
+        GameObject.FindWithTag("Player").GetComponent<Rigidbody>().velocity = Vector3.zero;
 
         //if nothing in que
         if (paragraphs.Count == 0)
@@ -62,11 +64,12 @@ public class Dialogue : MonoBehaviour
                 //while this only calls once at the end of the dialgue text SO
                 IncrementDialogueMethod(currentlyDisplayedText);
 
-
+                //give the keys to rupert 
                 if (currentlyDisplayedText.name == "Frank_Has_Keys" || currentlyDisplayedText.name == "Franny_Has_Keys")
                 {
                     playercontroller.inventory.AddItem(new Item { itemType = Item.ItemType.Key, amount = 1 });
                 }
+
 
                 //end convo
                 EndConversation();
@@ -259,6 +262,8 @@ public class Dialogue : MonoBehaviour
             if (dialogueText.incrementDialogueTo >= 0)
             {
                 Frank_Dialogue.Instance.IncrementDialogueIntTo(dialogueText.incrementDialogueTo);
+
+                //if the value of the above method is 10 then all dialgoues are set to 10 as well its a way of progressing the narrative along so all of the npcs are aware of the progression.
                 SetAllNPCDialogue(dialogueText);
             }
         }

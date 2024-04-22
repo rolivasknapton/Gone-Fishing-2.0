@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -11,6 +10,7 @@ public class IntroSequence : MonoBehaviour
     public GameObject intro_text2;
     public GameObject intro_text3;
     public GameObject intro_text4;
+    public Image houseWindows;
 
     IEnumerator Start()
     {
@@ -30,7 +30,7 @@ public class IntroSequence : MonoBehaviour
             if (textMeshPro != null)
             {
                 yield return StartCoroutine(FadeTextAlpha(textMeshPro, 1f, 1f)); // Step 1
-                yield return new WaitForSeconds(5f); // Wait for 3 seconds
+                yield return new WaitForSeconds(6f); // Wait for 6 seconds
 
                 yield return StartCoroutine(FadeTextAlpha(textMeshPro, 0f, 1f)); // Step 2
                 lastTextObject = textObject; // Update the last text object
@@ -47,9 +47,16 @@ public class IntroSequence : MonoBehaviour
         {
             yield return StartCoroutine(WaitForAlphaZero(lastTextObject.GetComponent<TextMeshProUGUI>())); // Wait for alpha to reach 0
 
-            //this is where you change the scene
-            SceneManager.LoadScene("Inside");
+            yield return StartCoroutine(FadeImageAlpha(houseWindows, 1f, 1f)); // Fade in houseWindows
 
+            // Wait for 1 second after houseWindows alpha reaches 100
+            yield return new WaitForSeconds(1f);
+
+            yield return StartCoroutine(FadeImageAlpha(houseWindows, 0f, 1f)); // Fade out houseWindows
+
+            // Wait for 1 second before changing the scene
+            yield return new WaitForSeconds(1f);
+            SceneManager.LoadScene("Inside");
 
             Debug.Log("hi!");
         }
@@ -83,5 +90,27 @@ public class IntroSequence : MonoBehaviour
         {
             yield return null;
         }
+    }
+
+    IEnumerator FadeImageAlpha(Image image, float targetAlpha, float duration)
+    {
+        float startAlpha = image.color.a;
+        float timer = 0f;
+
+        while (timer < duration)
+        {
+            float alpha = Mathf.Lerp(startAlpha, targetAlpha, timer / duration);
+            Color newColor = image.color;
+            newColor.a = alpha;
+            image.color = newColor;
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure alpha reaches exactly the target value
+        Color finalColor = image.color;
+        finalColor.a = targetAlpha;
+        image.color = finalColor;
     }
 }

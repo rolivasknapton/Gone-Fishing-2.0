@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         uiInventory.SetInventory(inventory);
         //idk why but this is the only way to get fish
 
-        ItemWorld.SpawnItemWorld(new Vector3(-1.23f, 0.14f, -1.60f), new Item { itemType = Item.ItemType.Fish, amount = 1 });
+        //ItemWorld.SpawnItemWorld(new Vector3(-1.23f, 0.14f, -1.60f), new Item { itemType = Item.ItemType.Fish, amount = 1 });
         
     }
     private void OnTriggerEnter(Collider other)
@@ -222,20 +222,12 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown("space"))
         {
-
             if (nearbyObject.GetComponent<IDiggable>() != null)
             {
                 shovel.SetActive(true);
             }
 
             nearbyObject.GetComponent<IInteractable>().Interact();
-            
-            
-            if (nearbyObject != null && nearbyObject.GetComponent<ITalkable>() != null)
-            {
-
-                rb.velocity = Vector3.zero;
-            }
         }
     }
     public void DialogueStarted()
