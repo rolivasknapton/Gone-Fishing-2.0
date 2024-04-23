@@ -578,6 +578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IncrementDialogue: 0
+  Rupert_Refuses_Stairs: {fileID: 0}
 --- !u!1 &173517039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,6 +1727,7 @@ MonoBehaviour:
   Frank_Requests_Hand: {fileID: 11400000, guid: 8360e13b1e82e2e40852739780cfe2db, type: 2}
   Frank_Keys: {fileID: 11400000, guid: 8c87ee3364686714fb4908d7eafa9470, type: 2}
   Frank_You_Have_Keys: {fileID: 11400000, guid: 80f28faf535df434989540582942cd6a, type: 2}
+  Frank_Loop_After_Hand: {fileID: 11400000, guid: d516ca5a70ce1c04cbea02186209a537, type: 2}
 --- !u!1 &530566936
 GameObject:
   m_ObjectHideFlags: 0

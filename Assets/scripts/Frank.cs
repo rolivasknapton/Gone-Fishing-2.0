@@ -35,6 +35,10 @@ public class Frank : NPC, ITalkable
         {
             dialogueText = Frank_Dialogue.Instance.Frank_Keys;
         }
+        if (Frank_Dialogue.Instance.IncrementDialogue == 3)
+        {
+            dialogueText = Frank_Dialogue.Instance.Frank_Loop_After_Hand;
+        }
         if (Frank_Dialogue.Instance.IncrementDialogue == 10)
         {
             dialogueText = Frank_Dialogue.Instance.Frank_You_Have_Keys;

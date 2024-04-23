@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speakerName: Frank
   paragraphs:
-  - YOU HAVE THEM
+  - 'YOU HAVE THE KEYS. '
+  - YOU CAN NOW GET IN THE HOUSE AGAIN!
   questionAsked: 0
   incrementFrannyDialogue: 0
   incrementFrankDialogue: 0
