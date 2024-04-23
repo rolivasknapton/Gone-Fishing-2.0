@@ -19,5 +19,7 @@ MonoBehaviour:
   questionAsked: 0
   incrementFrannyDialogue: 0
   incrementFrankDialogue: 0
-  chainedText: {fileID: 0}
+  incrementRupertDialogue: 0
+  chainedText: {fileID: 11400000, guid: cbb5556d3eb9b764dba049f90a33a7b4, type: 2}
   chainedTexttwo: {fileID: 0}
+  incrementDialogueTo: -1
