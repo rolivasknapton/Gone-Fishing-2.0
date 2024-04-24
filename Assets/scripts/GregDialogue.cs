@@ -41,6 +41,10 @@ public class Greg : NPC, ITalkable
         {
             dialogueText = Greg_Dialogue.Instance.Greg_Still_Looking;
         }
+        if(Greg_Dialogue.Instance.IncrementDialogue == 10)
+        {
+            dialogueText = Greg_Dialogue.Instance.Greg_Hey_Look_At_That;
+        }
 
 
 

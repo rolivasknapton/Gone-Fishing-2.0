@@ -65,7 +65,7 @@ public class Dialogue : MonoBehaviour
                 IncrementDialogueMethod(currentlyDisplayedText);
 
                 //give the keys to rupert 
-                if (currentlyDisplayedText.name == "Frank_Has_Keys" || currentlyDisplayedText.name == "Franny_Has_Keys")
+                if (currentlyDisplayedText.name == "Frank_Has_Keys" || currentlyDisplayedText.name == "Franny_Has_Keys" || currentlyDisplayedText.name == "Greg_Yes")
                 {
                     playercontroller.inventory.AddItem(new Item { itemType = Item.ItemType.Key, amount = 1 });
                 }
@@ -123,8 +123,12 @@ public class Dialogue : MonoBehaviour
             yes_no.gameObject.SetActive(true);
         }
 
-        //at the end of this dialoguetext, start the first chained text if it is there.
-        if (conversationEnded && currentlyDisplayedText.chainedText != null)
+        //if the player has talked to all of the other villagers, then start the second chained text.
+        if (conversationEnded && currentlyDisplayedText.chainedTexttwo != null && Rupert_Dialogue.Instance.IncrementDialogue == 3)
+        {
+            StartConversation(currentlyDisplayedText.chainedTexttwo);
+        }//at the end of this dialoguetext, start the first chained text if it is there.
+        else if (conversationEnded && currentlyDisplayedText.chainedText != null)
         {
 
             //reutrn bool to false
@@ -132,11 +136,8 @@ public class Dialogue : MonoBehaviour
 
             StartConversation(currentlyDisplayedText.chainedText);
 
-        }//if the player has talked to all of the other villagers, then start the second chained text.
-        else if (conversationEnded && currentlyDisplayedText.chainedTexttwo != null && Rupert_Dialogue.Instance.IncrementDialogue == 0)
-        {
-            StartConversation(currentlyDisplayedText.chainedTexttwo);
         }
+        
 
 
     }
@@ -300,6 +301,10 @@ public class Dialogue : MonoBehaviour
             frank.GetComponent<Frank>().GiveHand();
 
         }
+        if(currentlyDisplayedText.name == "Rupert_Silent")
+        {
+            Rupert_Dialogue.Instance.IncrementDialogueInt();
+        }
         //give the player an item
         
     }
@@ -309,6 +314,7 @@ public class Dialogue : MonoBehaviour
         {
             franny_dialogue.Instance.IncrementDialogueIntTo(dialogueText.incrementDialogueTo);
             Frank_Dialogue.Instance.IncrementDialogueIntTo(dialogueText.incrementDialogueTo);
+            Greg_Dialogue.Instance.IncrementDialogueIntTo(dialogueText.incrementDialogueTo);
         }
     }
 

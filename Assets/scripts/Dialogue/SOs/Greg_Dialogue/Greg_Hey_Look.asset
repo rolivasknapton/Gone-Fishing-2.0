@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e44b171dc19e53e4dbb3dad477a34a78, type: 3}
-  m_Name: Rupert_Silent
+  m_Name: Greg_Hey_Look
   m_EditorClassIdentifier: 
-  speakerName: Rupert
+  speakerName: Greg
   paragraphs:
-  - ......
+  - Heyyyy look at that.. you have the keys
+  - now scram
   questionAsked: 0
   incrementFrannyDialogue: 0
   incrementFrankDialogue: 0
   incrementGregDialogue: 0
   incrementRupertDialogue: 0
-  chainedText: {fileID: 11400000, guid: dc180a3c7fcb8f04cb3e5d2a0829ac70, type: 2}
-  chainedTexttwo: {fileID: 11400000, guid: 39b976af775b15e428ad2a196a659d96, type: 2}
+  chainedText: {fileID: 0}
+  chainedTexttwo: {fileID: 0}
   incrementDialogueTo: -1

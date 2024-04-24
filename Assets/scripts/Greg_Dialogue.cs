@@ -16,4 +16,5 @@ public class Greg_Dialogue : NPC_Dialogue
     public DialogueText Greg_What_I_Say;
     public DialogueText Greg_Final_Warning;
     public DialogueText Greg_Still_Looking;
+    public DialogueText Greg_Hey_Look_At_That;
 }
