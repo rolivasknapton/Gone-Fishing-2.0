@@ -10,9 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e44b171dc19e53e4dbb3dad477a34a78, type: 3}
-  m_Name: greg introduction
+  m_Name: Rupert_Keys_Greg
   m_EditorClassIdentifier: 
-  speakerName: Greg
+  speakerName: Rupert
   paragraphs:
-  - leave me alone rupert.
-  - I'm not interested in your antics today..
+  - KEYS GREG
+  - HAVE YOU SEEN THE KEYS!
+  questionAsked: 0
+  incrementFrannyDialogue: 0
+  incrementFrankDialogue: 0
+  incrementGregDialogue: 0
+  incrementRupertDialogue: 0
+  chainedText: {fileID: 11400000, guid: 6e0eb84f77398e842851550649054f71, type: 2}
+  chainedTexttwo: {fileID: 0}
+  incrementDialogueTo: -1

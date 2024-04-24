@@ -133,7 +133,7 @@ public class Dialogue : MonoBehaviour
             StartConversation(currentlyDisplayedText.chainedText);
 
         }//if the player has talked to all of the other villagers, then start the second chained text.
-        else if (conversationEnded && currentlyDisplayedText.chainedTexttwo != null && Rupert_Dialogue.Instance.IncrementDialogue == 2)
+        else if (conversationEnded && currentlyDisplayedText.chainedTexttwo != null && Rupert_Dialogue.Instance.IncrementDialogue == 0)
         {
             StartConversation(currentlyDisplayedText.chainedTexttwo);
         }
@@ -262,6 +262,19 @@ public class Dialogue : MonoBehaviour
             if (dialogueText.incrementDialogueTo >= 0)
             {
                 Frank_Dialogue.Instance.IncrementDialogueIntTo(dialogueText.incrementDialogueTo);
+
+                //if the value of the above method is 10 then all dialgoues are set to 10 as well its a way of progressing the narrative along so all of the npcs are aware of the progression.
+                SetAllNPCDialogue(dialogueText);
+            }
+        }
+
+        //Greg dialogue
+        if (dialogueText.incrementGregDialogue)
+        {
+            Greg_Dialogue.Instance.IncrementDialogueInt();
+            if (dialogueText.incrementDialogueTo >= 0)
+            {
+                Greg_Dialogue.Instance.IncrementDialogueIntTo(dialogueText.incrementDialogueTo);
 
                 //if the value of the above method is 10 then all dialgoues are set to 10 as well its a way of progressing the narrative along so all of the npcs are aware of the progression.
                 SetAllNPCDialogue(dialogueText);
