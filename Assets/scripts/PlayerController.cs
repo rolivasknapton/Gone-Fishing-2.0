@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
     private GameObject pond;
 
-    private Vector3 playerPosition;
+    public Vector3 playerPosition;
     private Rigidbody rb;
     [SerializeField] private UI_Inventory uiInventory;
 
@@ -30,8 +30,18 @@ public class PlayerController : MonoBehaviour
 
     public bool fishButtonDown;
     public Inventory inventory;
+
+    public Vector3 CurrentNPCCameraPosition;
+    public CameraMover cameraMover;
+
     private void Awake()
     {
+        playerPosition = transform.position;
+        //snap camera to player
+
+
+        Camera.main.transform.position = new Vector3(playerPosition.x, 3.87f, playerPosition.z - 12f);
+
 
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component attached to the player
 
@@ -45,7 +55,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         
-        playerPosition = transform.position;
+        
         uiInventory.SetInventory(inventory);
         //idk why but this is the only way to get fish
 
@@ -100,7 +110,7 @@ public class PlayerController : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(movement);
 
             // Smoothly rotate towards the target rotation
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
         }
 
 
@@ -177,10 +187,21 @@ public class PlayerController : MonoBehaviour
         Camera mainCamera = Camera.main;
 
         // Calculate camera movement direction
-        Vector3 cameraMovement = new Vector3(playerPosition.x, 3.87f, playerPosition.z - 9.24f);
 
-        // Move the camera
-        mainCamera.transform.position = cameraMovement;
+        Vector3 cameraMovement = new Vector3(playerPosition.x, 3.87f, playerPosition.z - 12f);
+
+       
+
+        if (!currentlySpeaking&& (IsAnyWASDPressed() || rb.velocity != Vector3.zero))
+        { // Move the camera
+            if (cameraMover != null)
+            {
+                cameraMover.enabled = false;
+            }
+            
+            mainCamera.transform.position = cameraMovement;
+            //mainCamera.transform.position = CurrentNPCCameraPosition;
+        }
     }
     private bool CanFish()
     {
@@ -216,6 +237,7 @@ public class PlayerController : MonoBehaviour
     //interacts with the nearby object if there is one and if the player pressed space
     private void OnSpaceActivateNearbyObject()
     {
+
         if (nearbyObject == null)
         {
             return;
@@ -228,6 +250,28 @@ public class PlayerController : MonoBehaviour
             }
 
             nearbyObject.GetComponent<IInteractable>().Interact();
+            if (nearbyObject != null && nearbyObject.GetComponent<ITalkable>() != null)
+            {
+                
+
+                //Camera mainCamera = Camera.main;
+                //mainCamera.transform.position = CurrentNPCCameraPosition;
+                if (cameraMover.targetPosition != CurrentNPCCameraPosition)
+                {
+                    //Debug.Log("Gay");
+                    cameraMover.enabled = true;
+                    cameraMover.LerpToPosition(CurrentNPCCameraPosition);
+                }
+                else if (!currentlySpeaking)
+                {
+                    cameraMover.enabled = true;
+                    cameraMover.LerpToPosition(new Vector3(playerPosition.x, 3.87f, playerPosition.z - 12f));
+                }
+
+                
+
+            }
+            
         }
     }
     public void DialogueStarted()
@@ -237,6 +281,23 @@ public class PlayerController : MonoBehaviour
     public void DialogueEnded()
     {
         currentlySpeaking = false;
+    }
+    public void SetCameraPosition(GameObject obj)
+    {
+
+       CurrentNPCCameraPosition = obj.transform.position;
+    }
+    public bool IsAnyWASDPressed()
+    {
+        // Check if any of the WASD keys are currently held down
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        {
+            return true; // Return true if any of the WASD keys are pressed
+        }
+        else
+        {
+            return false; // Return false if none of the WASD keys are pressed
+        }
     }
 
 }

@@ -35,6 +35,9 @@ public class Dialogue : MonoBehaviour
 
     
     private GameObject frank;
+
+    public CameraMover cameraMover;
+    public GameObject Player;
     
     private void OnEnable()
     {
@@ -188,6 +191,9 @@ public class Dialogue : MonoBehaviour
 
         //notifyother scrupts
         convoInprogress = false;
+
+        //move camera
+        //cameraMover.LerpToPosition(new Vector3(playercontroller.playerPosition.x, 3.87f, playercontroller.playerPosition.z - 12f));
 
         //deactivate this gameobject
         if (gameObject.activeSelf)

@@ -22,6 +22,10 @@ public class FishMovement : MonoBehaviour
     private float yPosition = 0.019f;
     public float duration = 1.0f;
     private float elapsedTime = 0.0f; // Time elapsed since the interpolation started
+
+    public GameObject Bubbles;
+    private GameObject activeBubbles;
+    private bool bubbleActive;
     // Start is called before the first frame update
     private void Start()
     {
@@ -72,10 +76,12 @@ public class FishMovement : MonoBehaviour
             StartFishWander();
         }
 
+
         if (FishNearHook && Input.GetKeyDown("space"))
         {
             Destroy(gameObject);
-
+            StopActiveParticles(activeBubbles);
+            
             //adds item to inventory
             playercontroller.inventory.AddItem(new Item { itemType = Item.ItemType.Fish, amount = 1 });
             
@@ -102,6 +108,13 @@ public class FishMovement : MonoBehaviour
             
             FishNearHook = true;
 
+            
+            if (!bubbleActive)
+            {
+                activeBubbles = Instantiate(Bubbles, transform.position, transform.rotation);
+                bubbleActive = true;
+            }
+            
             //touching = true;
             //Debug.Log(touching);
         }
@@ -111,6 +124,7 @@ public class FishMovement : MonoBehaviour
         if (other.gameObject.name == "FishingRodTip")
         {
             FishNearHook = false;
+            
             //Debug.Log("no longer touching");
         }
 
@@ -178,7 +192,16 @@ public class FishMovement : MonoBehaviour
         return new Vector3(randomX, yPosition, randomZ);
 
     }
+    private void StopActiveParticles(GameObject obj)
+    {
+        var particles = obj.GetComponent<ParticleSystem>();
+        var emission = particles.emission;
+        emission.rateOverTime = 0f;
+        ObjDestroyer.Instance.DestroyAfterFiveSeconds(obj);
+
+    }
     
+
 
 
 }

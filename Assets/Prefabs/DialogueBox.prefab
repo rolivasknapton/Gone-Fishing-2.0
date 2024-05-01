@@ -441,6 +441,8 @@ MonoBehaviour:
   typeSpeed: 10
   yes_no: {fileID: 8667749289737499582}
   currentlyDisplayedText: {fileID: 0}
+  cameraMover: {fileID: 1171703640308357085, guid: ed7b4c3409fa0724a922df2848fce047, type: 3}
+  Player: {fileID: 6689231089106205188, guid: dde738910a35c5d47ba626c876929aa2, type: 3}
 --- !u!1 &5495493221656655519
 GameObject:
   m_ObjectHideFlags: 0

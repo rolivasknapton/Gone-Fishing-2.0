@@ -10,6 +10,8 @@ public class GregMovement : MonoBehaviour
     public Vector3 direction; // Variable to store the generated direction
     private bool isTalking;
     public bool isVisible;
+
+    
     private void Start()
     {
         // Invoke the GenerateDirection method every few seconds starting after 0 seconds

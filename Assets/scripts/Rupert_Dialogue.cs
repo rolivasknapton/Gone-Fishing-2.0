@@ -13,4 +13,5 @@ public class Rupert_Dialogue : NPC_Dialogue
     }
 
     public DialogueText Rupert_Refuses_Stairs;
+    public DialogueText Rupert_Door_Locked;
 }

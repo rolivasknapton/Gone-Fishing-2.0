@@ -7,12 +7,14 @@ public class Franny : NPC, ITalkable
 
     [SerializeField] private DialogueText dialogueText;
     [SerializeField] private Dialogue dialogue;
+
+    public GameObject CameraPosition;
     //when the player gets near Franny, the nearest object is stored in a variable on the PlayerController script
 
     public override void Interact()
     {
         Talk(dialogueText);
-
+        playercontroller.SetCameraPosition(CameraPosition);
         
     }
 

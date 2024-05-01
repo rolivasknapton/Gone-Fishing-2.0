@@ -9,12 +9,12 @@ public class Frank : NPC, ITalkable
     [SerializeField] private Dialogue dialogue;
 
     public Sprite FrankWithHand;
-
+    public GameObject CameraPosition;
     public override void Interact()
     {
         Talk(dialogueText);
+        playercontroller.SetCameraPosition(CameraPosition);
 
-       
     }
 
     public void Talk(DialogueText dialogueText)

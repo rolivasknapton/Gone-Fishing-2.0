@@ -9,6 +9,7 @@ public class Greg : NPC, ITalkable
     [SerializeField] private Dialogue dialogue;
 
     private GregMovement gregMovement;
+    public GameObject CameraPosition;
     private void Start()
     {
         gregMovement = this.GetComponent<GregMovement>();
@@ -19,6 +20,7 @@ public class Greg : NPC, ITalkable
         {
             //Debug.Log("interacted!");
             Talk(dialogueText);
+            playercontroller.SetCameraPosition(CameraPosition);
             if (dialogue.CheckIfConvoEnded())
             {
                 gregMovement.EndConversation();

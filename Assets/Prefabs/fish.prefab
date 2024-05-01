@@ -103,6 +103,7 @@ MonoBehaviour:
   FishNearHook: 0
   isMovingTowardsPlayer: 0
   duration: 1
+  Bubbles: {fileID: 5024297697325539314, guid: cb4a2567b61ae54449704d1d1ddd326c, type: 3}
 --- !u!135 &6606892560501973916
 SphereCollider:
   m_ObjectHideFlags: 0
