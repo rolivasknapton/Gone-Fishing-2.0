@@ -206,6 +206,7 @@ MonoBehaviour:
   IncrementDialogue: 0
   Rupert_Refuses_Stairs: {fileID: 0}
   Rupert_Door_Locked: {fileID: 11400000, guid: 675fcb3f21bfc5c44add8e16f6369717, type: 2}
+  Rupert_Interior_Door_Locked: {fileID: 0}
 --- !u!1 &2846179482770139096
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,6 +674,7 @@ MonoBehaviour:
   shovel: {fileID: 4623888833030722502}
   currentlyFishing: 0
   currentlySpeaking: 0
+  playerPosition: {x: 0, y: 0, z: 0}
   uiInventory: {fileID: 0}
   nearbyObject: {fileID: 0}
   fishButtonDown: 0
@@ -702,7 +704,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &7873251013865972344
