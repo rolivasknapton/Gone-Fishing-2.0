@@ -18,6 +18,8 @@ public class Locked_Ballroom_Door : Door
         }
         else
         {
+            //clear's player's nearby obj
+            playercontroller.StoreNearestGameObject(null);
             //activates the ballroom evironment
             ballroom.SetActive(true);
             //this sets this gameobject inactive as well so it is best to leave this to the end of the logic
