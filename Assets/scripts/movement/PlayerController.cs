@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -38,10 +39,6 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         playerPosition = transform.position;
-        //snap camera to player
-
-        //Debug.Log(Progression.StoryProgression);
-        Camera.main.transform.position = new Vector3(playerPosition.x, 3.87f, playerPosition.z - 12f);
 
         rb = GetComponent<Rigidbody>(); // Get the Rigidbody component attached to the player
 
@@ -188,6 +185,9 @@ public class PlayerController : MonoBehaviour
         // Get the main camera
         Camera mainCamera = Camera.main;
 
+        //get first virtual camera
+        CinemachineVirtualCamera vcam = CinemachineVirtualCamera.FindObjectOfType<CinemachineVirtualCamera>();
+
         
         // Calculate camera movement direction
 
@@ -202,7 +202,16 @@ public class PlayerController : MonoBehaviour
                 cameraMover.enabled = false;
             }
             
+            //move the cam
             mainCamera.transform.position = cameraMovement;
+
+            //if the virtual camera is present, move the vcamera
+            if(vcam != null)
+            {
+                vcam.transform.position = mainCamera.transform.position;
+            }
+            
+            
             //mainCamera.transform.position = CurrentNPCCameraPosition;
         }
     }

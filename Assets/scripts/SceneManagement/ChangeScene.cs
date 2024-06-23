@@ -34,4 +34,15 @@ public class ChangeScene : MonoBehaviour
         // Now that the screen is black, load the scene
         SceneManager.LoadScene(sceneName);
     }
+
+    public void PlayButton()
+    {
+        StartCoroutine(FadeToScene("Intro"));
+    }
+    public void ExitButton()
+    {
+        
+        Application.Quit();
+    }
+
 }
